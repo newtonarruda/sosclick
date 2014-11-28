@@ -2,11 +2,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.com.fiap.sosclick.view.MenuActivity" >
+    tools:ignore="UselessParent" 
+    android:background="@drawable/background_app">
     
+   
+
+    <LinearLayout
+    	android:id="@+id/LinearLayout0"
+    	android:layout_width="fill_parent"
+    	android:layout_height="100dp"
+    	android:layout_alignParentLeft="true"
+    	android:orientation="horizontal" >
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LinearLayout0"
+        android:orientation="horizontal" >
+ 
+        <ImageView
+            android:id="@+id/ivUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:onClick="onClickUsuario"
+            android:src="@drawable/user" >
+            </ImageView>
+        
+        <ImageView
+            android:id="@+id/ivPlanodesaude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:onClick="onClickPlano"
+            android:src="@drawable/planodesaude" >
+            </ImageView>
+	</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LinearLayout1"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:id="@+id/tvUser"
+            style="@style/AppTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_marginTop="0dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/usuario" />
+        
+        <TextView
+            android:id="@+id/tvPlanodesaude"
+            style="@style/AppBaseTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/planodesaude" />
+        
+</LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/LinearLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LinearLayout2"
+        android:orientation="horizontal" >
+        
+        <ImageView
+            android:id="@+id/ivSaude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:onClick="onClickSaude"
+            android:src="@drawable/saude" >
+            </ImageView>
+            
+        <ImageView
+            android:id="@+id/ivSocorristas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@null"
+            android:onClick="onClickSocorristas"
+            android:src="@drawable/socorristas" >
+            </ImageView>
+        
+    </LinearLayout>
+    
+        <LinearLayout
+        android:id="@+id/LinearLayout4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LinearLayout3"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:id="@+id/tvSaude"
+            style="@style/AppTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_marginTop="0dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/saude" />
+        
+        <TextView
+            android:id="@+id/tvSocorristas"
+            style="@style/AppBaseTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/socorristas" />
+        
+</LinearLayout>
+
+
     
 </RelativeLayout>

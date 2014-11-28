@@ -6,14 +6,14 @@
 	<string name="btEntrar">Entrar</string>
     <string name="btNovoUsuario">Novo Usuário</string>
     <string name="btCadastrarNovoUsuario">Cadastrar Novo Usuário</string>
-    <string name="txtEmptyNome">Nome</string>
+    <string name="separador">______________________</string>
+    <string name="background">Background</string>
+    <string name="usuario">Usuário</string>
+    <string name="planodesaude">Plano de Saúde</string>
+    <string name="socorristas">Socorristas</string>
+    <string name="saude">Saúde</string>
+    <string name="login">Login</string>
     <string name="txtEmptySenha">Senha</string>
     <string name="txtEmptyUsuario">Usuário</string>
-    <string name="txtEmptyEmail">E-mail</string>
-    <string name="txtEmptyTelefone">Telefone</string>
-    <string name="separador">______________________</string>
-    <string name="LOGIN">LOGIN</string>
-    <string name="NOVO_USUARIO">NOVO USUÁRIO</string>
-    <string name="VOLTAR">VOLTAR</string>
 
 </resources>
