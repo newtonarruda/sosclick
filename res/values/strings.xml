@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SOS Click</string>
+    <string name="action_settings">Settings</string>
+	<string name="btEntrar">Entrar</string>
+    <string name="btNovoUsuario">Novo Usuário</string>
+    <string name="btCadastrarNovoUsuario">Cadastrar Novo Usuário</string>
+    <string name="txtEmptyNome">Nome</string>
+    <string name="txtEmptySenha">Senha</string>
+    <string name="txtEmptyUsuario">Usuário</string>
+    <string name="txtEmptyEmail">E-mail</string>
+    <string name="txtEmptyTelefone">Telefone</string>
+    <string name="separador">______________________</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="NOVO_USUARIO">NOVO USUÁRIO</string>
+    <string name="VOLTAR">VOLTAR</string>
+
+</resources>
