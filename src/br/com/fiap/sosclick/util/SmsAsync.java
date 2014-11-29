@@ -4,6 +4,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+/**
+ * Classe de SmsAsync, para envio de Sms Asíncronos
+ * @author Mauricio F. Jr
+ * @version 1.0
+ * @since Sprint 1
+ */
 public class SmsAsync extends AsyncTask<Object, String, Void>
 {
 

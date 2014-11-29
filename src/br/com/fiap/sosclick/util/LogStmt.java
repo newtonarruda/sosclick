@@ -6,6 +6,7 @@ package br.com.fiap.sosclick.util;
  * Objetivo: Verificar e analisar o retorno em database ou Logcat.
  * @author Mauricio F. Jr
  * @version 1.0
+ * @since Sprint 1
  */
 public final class LogStmt 
 {
