@@ -6,7 +6,7 @@
 	<string name="btEntrar">Entrar</string>
     <string name="btNovoUsuario">Novo Usuário</string>
     <string name="btCadastrarNovoUsuario">Cadastrar Novo Usuário</string>
-    <string name="separador">______________________</string>
+    <string name="menu">Menu</string>
     <string name="background">Background</string>
     <string name="usuario">Usuário</string>
     <string name="planodesaude">Plano de Saúde</string>
@@ -15,5 +15,7 @@
     <string name="login">Login</string>
     <string name="txtEmptySenha">Senha</string>
     <string name="txtEmptyUsuario">Usuário</string>
-
+    <string name="facebook_app_id">305374419667233</string>
+    
+    
 </resources>

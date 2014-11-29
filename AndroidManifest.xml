@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <!-- RECURSOS DE PERMISSÕES SOS CLICK -->
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -19,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="br.com.fiap.sosclick.view.MenuActivity"
+            android:name="br.com.fiap.sosclick.view.SplshScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +28,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity
+            android:name=".view.LoginActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".view.MenuActivity"
+            android:label="@string/menu" >
+        </activity>
+        <activity
+            android:name=".view.UserActivity"
+            android:label="@string/usuario" >
+        </activity>
+        <activity
+            android:name=".view.PlanodesaudeActivity"
+            android:label="@string/planodesaude" >
+        </activity>
+        <activity
+            android:name=".view.SaudeActivity"
+            android:label="@string/saude" >
+        </activity>
+        <activity
+            android:name=".view.SocorristasActivity"
+            android:label="@string/socorristas" >
+        </activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        </application>
 
 </manifest>
