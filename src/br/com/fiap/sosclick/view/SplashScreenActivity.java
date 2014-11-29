@@ -35,7 +35,7 @@ public class SplashScreenActivity extends Activity {
 				} catch (InterruptedException ex) {
 					Log.e( LogStmt.CATEGORIA_SplashScreenActivity, "SplashScreenActivity.onCreate: " 
 							+ ex.getMessage( ) );
-					// TODO Log: Implementar log de sistema em arquivo
+					// Log: Implementar log de sistema em arquivo
 					// TODO Inserção de log em database
 				}
 
