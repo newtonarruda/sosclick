@@ -27,7 +27,7 @@ public class SplashScreenActivity extends Activity {
 						clicouTela = true;
 					}
 				} catch (InterruptedException ex) {
-					// TODO Log: Implementar log de sistema em arquivo
+					// Log: Implementar log de sistema em arquivo
 				}
 
 				if (clicouTela) {
