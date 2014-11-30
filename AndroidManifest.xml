@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="br.com.fiap.sosclick.view.SplshScreenActivity"
+            android:name="br.com.fiap.sosclick.view.SplashScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
             android:label="@string/menu" >
         </activity>
         <activity
-            android:name=".view.UserActivity"
+            android:name=".view.UsuarioActivity"
             android:label="@string/usuario" >
         </activity>
         <activity
