@@ -18,5 +18,18 @@
     <string name="facebook_app_id">305374419667233</string>
     <string name="informacoes">Informações</string>
     
-    
+	<string name="cadastro_usuario">Cadastro de Usuário</string>
+	<string name="txtEmptyNome">Nome</string>
+	<string name="txtEmptyEmail">E-mail</string>
+	<string name="txtEmptyTelefone">Telefone</string>
+    <string name="bitPadrao">Padrão</string>
+	<string name="bitHipertenso">Hipertenso</string>
+	<string name="bitHipotenso">Hipotenso</string>
+	<string name="flagDiabete">Diabético ?</string>
+	<string name="txtEmptyMedicacoes">Quais………</string>
+	<string name="flagMedicacao">Toma medicação regularmente ?</string>
+	<string name="txtEmptyAlergias">Descreva………</string>
+	<string name="flagAlergia">Alérgico ?</string>
+	<string name="txtEmptyDescricaoUsuario">Descrições………</string>
+	<string name="btSalvar">Salvar</string>
 </resources>

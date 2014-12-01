@@ -47,6 +47,20 @@
             android:background="@drawable/loginfacebook"
             android:textAlignment="center" />
              
-    </LinearLayout>
+        <Button
+            android:id="@+id/btLogin"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btEntrar" />
+        
+        <Button
+            android:id="@+id/btNovoUsuario"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btNovoUsuario" />
+        
+        </LinearLayout>
 
 </RelativeLayout>
