@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+
 public class LoginActivity extends Activity{
 	
 	Button btLogin;
@@ -17,10 +18,14 @@ public class LoginActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		btLogin = (Button) findViewById(R.id.btEntrar);
-		btLogin.setOnClickListener(new ClickerEntrar());
+
+    btLogin = (Button) findViewById(R.id.btEntrar);
+	btLogin.setOnClickListener(new ClickerEntrar());
+		
+	
 	}
 	
+		
 	private class ClickerEntrar implements OnClickListener {
 
 		@Override
@@ -31,4 +36,6 @@ public class LoginActivity extends Activity{
 			startActivity(intent);
 		}
 	}
+	
+	
 }

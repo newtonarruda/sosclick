@@ -16,6 +16,7 @@ public class MenuActivity extends Activity {
 	ImageView ivPlanodesaude;
 	ImageView ivSaude;
 	ImageView ivSocorristas;
+	ImageView ivInformacoes;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class MenuActivity extends Activity {
 		
 		ivSocorristas = (ImageView) findViewById(R.id.ivSocorristas);
 		ivSocorristas.setOnClickListener(new ClickerSocorristas());
+		
+		ivInformacoes = (ImageView) findViewById(R.id.ivInfo);
+		ivInformacoes.setOnClickListener(new ClickerInformacoes());
 		
 	}
 
@@ -80,6 +84,16 @@ public class MenuActivity extends Activity {
 		}
 	}
 	
+	private class ClickerInformacoes implements OnClickListener {
+
+		@Override
+		public void onClick(View view) {
+			// Tela InformacoesActivity
+			Intent intent = new Intent(getBaseContext(),
+					InformacoesActivity.class);
+			startActivity(intent);
+		}
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

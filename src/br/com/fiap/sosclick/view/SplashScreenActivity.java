@@ -36,7 +36,7 @@ public class SplashScreenActivity extends Activity {
 					Log.e( LogStmt.CATEGORIA_SplashScreenActivity, "SplashScreenActivity.onCreate: " 
 							+ ex.getMessage( ) );
 					// Log: Implementar log de sistema em arquivo
-					// TODO Inserção de log em database
+					// Inserção de log em database
 				}
 
 				if (clicouTela) {
