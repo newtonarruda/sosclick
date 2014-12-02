@@ -3,12 +3,15 @@ package br.com.fiap.sosclick.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import br.com.fiap.sosclick.R;
+import br.com.fiap.sosclick.util.LogStmt;
+import br.com.fiap.sosclick.util.SmsAsync;
 
 public class MenuActivity extends Activity {
 
@@ -18,10 +21,14 @@ public class MenuActivity extends Activity {
 	ImageView ivSocorristas;
 	ImageView ivInformacoes;
 	
+	SmsAsync senderSms; // TESTS
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
+		
+		Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onCreate: Carregando activity" );
 		
 		ivUser = (ImageView) findViewById(R.id.ivUser);
 		ivUser.setOnClickListener(new ClickerUsuario());
@@ -38,6 +45,9 @@ public class MenuActivity extends Activity {
 		ivInformacoes = (ImageView) findViewById(R.id.ivInfo);
 		ivInformacoes.setOnClickListener(new ClickerInformacoes());
 		
+		// TESTS
+		// senderSms = new SmsAsync( MenuActivity.this ); --> THIS WORKS!!!
+		
 	}
 
 	private class ClickerUsuario implements OnClickListener {
@@ -47,6 +57,7 @@ public class MenuActivity extends Activity {
 			// Tela UsuarioActivity
 			Intent intent = new Intent(getBaseContext(),
 					UsuarioActivity.class);
+			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Usuário" );
 			startActivity(intent);
 		}
 	}
@@ -58,6 +69,7 @@ public class MenuActivity extends Activity {
 			// Tela PlanodesaudeActivity
 			Intent intent = new Intent(getBaseContext(),
 					PlanodesaudeActivity.class);
+			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Plano de Saúde" );
 			startActivity(intent);
 		}
 	}
@@ -69,6 +81,7 @@ public class MenuActivity extends Activity {
 			// Tela SaudeActivity
 			Intent intent = new Intent(getBaseContext(),
 					SaudeActivity.class);
+			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Saúde" );
 			startActivity(intent);
 		}
 	}
@@ -80,6 +93,7 @@ public class MenuActivity extends Activity {
 			// Tela SocorristasActivity
 			Intent intent = new Intent(getBaseContext(),
 					SocorristasActivity.class);
+			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Socorrista" );
 			startActivity(intent);
 		}
 	}
@@ -91,6 +105,7 @@ public class MenuActivity extends Activity {
 			// Tela InformacoesActivity
 			Intent intent = new Intent(getBaseContext(),
 					InformacoesActivity.class);
+			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Informações" );
 			startActivity(intent);
 		}
 	}

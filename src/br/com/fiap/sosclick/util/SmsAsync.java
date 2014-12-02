@@ -32,7 +32,7 @@ public class SmsAsync extends AsyncTask<Object, String, Void>
 	protected Void doInBackground(Object... params) {
 		// Ignore this, unusefull, only for test
 		
-		Log.d( LogStmt.CATEGORIA_SmsAsync, "SmsAsync.doInBackground: Enviar Sms" );
+		Log.d( LogStmt.CATEGORIA_SMS_ASYNC, "SmsAsync.doInBackground: Enviar Sms" );
 		
 		Context context = (Context) params[0];
 		
@@ -40,17 +40,17 @@ public class SmsAsync extends AsyncTask<Object, String, Void>
 		{
 			sendMenssage = new SmsSosClick( );
 			
-			_telefone = "972901266"; // TESTE
-			_mensagem = "URGENTE: SOCORRER O SEU XXXXX"; // TESTE
+			_telefone = "11972901266"; // TESTE
+			_mensagem = " URGENTE: SOCORRER O SEU XXXXX"; // TESTE
 			
-			sendMenssage.enviarSms( context, "", "" );
-			Log.d( LogStmt.CATEGORIA_SmsAsync, "SmsAsync.doInBackground: Sms enviado para " +
+			sendMenssage.enviarSms( context, _telefone, _mensagem );
+			Log.d( LogStmt.CATEGORIA_SMS_ASYNC, "SmsAsync.doInBackground: Sms enviado para " +
 					_telefone + 
 					_mensagem );
 		}
 		catch( Exception e )
 		{
-			Log.e( LogStmt.CATEGORIA_SmsAsync, "SmsAsync.doInBackground: Ocorreu um erro ao enviar o Sms - " 
+			Log.e( LogStmt.CATEGORIA_SMS_ASYNC, "SmsAsync.doInBackground: Ocorreu um erro ao enviar o Sms - " 
 					+ e.getMessage( ) );
 			//TODO Inserção de log no Database
 		}
