@@ -12,6 +12,7 @@
     <!-- RECURSOS DE PERMISSÕES SOS CLICK -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <!-- FIM -->
     
     <application

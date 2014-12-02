@@ -12,6 +12,8 @@ import android.util.Log;
  */
 public class SmsAsync extends AsyncTask<Object, String, Void>
 {
+	
+	String _telefone = "", _mensagem = ""; // Para testes
 
 	SmsSosClick sendMenssage;
 	
@@ -38,7 +40,13 @@ public class SmsAsync extends AsyncTask<Object, String, Void>
 		{
 			sendMenssage = new SmsSosClick( );
 			
+			_telefone = "972901266"; // TESTE
+			_mensagem = "URGENTE: SOCORRER O SEU XXXXX"; // TESTE
+			
 			sendMenssage.enviarSms( context, "", "" );
+			Log.d( LogStmt.CATEGORIA_SmsAsync, "SmsAsync.doInBackground: Sms enviado para " +
+					_telefone + 
+					_mensagem );
 		}
 		catch( Exception e )
 		{
