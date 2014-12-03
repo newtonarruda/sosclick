@@ -48,7 +48,6 @@ public class LoginActivity extends Activity{
 		btNovoUsuario = (Button) findViewById(R.id.btNovoUsuario);
 		btNovoUsuario.setOnClickListener(new ClickerEntrar());
 
-<<<<<<< HEAD
 		if (dao == null) {
 			dao = new UsuarioDAO(this);
 		}
@@ -60,25 +59,6 @@ public class LoginActivity extends Activity{
 		}
 
 		executaCargaInicial();
-=======
-//		if (dao == null) {
-//			dao = new UsuarioDAO(this);
-//		}
-//
-//		try {
-//			if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
-//				btNovoUsuario.setEnabled(true);
-//			}
-//
-//			if (dao.isOpenDb() && dao.selectUsuarioAtivo() != null) {
-//				btNovoUsuario.setEnabled(false);
-//			}
-//		} catch (ParseException e) {
-//			btNovoUsuario.setEnabled(false);
-//		}
-	
-		
->>>>>>> 8500001345f7344573a60ce894878526630c1bf7
 		
 	}
 	
@@ -131,14 +111,9 @@ public class LoginActivity extends Activity{
 				} else {
 					trace("Usuário ou senha inválidos.");
 				}
-<<<<<<< HEAD
 				
-				Log.d( LogStmt.CATEGORIA_LoginActivity, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
-=======
-*/				
-				Log.d( LogStmt.CATEGORIA_LOGIN_ACTIVITY, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
->>>>>>> 8500001345f7344573a60ce894878526630c1bf7
-						" chamando MenuActivity" );
+//				Log.d( LogStmt.CATEGORIA_LoginActivity, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
+//						" chamando MenuActivity" );
 				break;
 
 			case R.id.btNovoUsuario:
