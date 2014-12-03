@@ -27,6 +27,8 @@ public class Usuario implements Serializable {
 	private String descricaoUsuario;
 	private boolean flagAtivo;
 
+	public Usuario(){}
+	
 	public Usuario(Integer idUsuario, String nome, String usuario,
 			String senha, String email, String telefone, Date dataNascimento, 
 			boolean flagAlergia, String descricaoAlergia, 

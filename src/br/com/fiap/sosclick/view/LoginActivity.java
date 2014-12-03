@@ -1,6 +1,6 @@
 package br.com.fiap.sosclick.view;
 
-import java.text.ParseException;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -52,19 +52,13 @@ public class LoginActivity extends Activity{
 			dao = new UsuarioDAO(this);
 		}
 
-		try {
-			if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
-				btNovoUsuario.setEnabled(true);
-			}
-
-			if (dao.isOpenDb() && dao.selectUsuarioAtivo() != null) {
-				btNovoUsuario.setEnabled(false);
-			}
-		} catch (ParseException e) {
+		if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
+			btNovoUsuario.setEnabled(true);
+		} else {
 			btNovoUsuario.setEnabled(false);
 		}
-	
-		
+
+		executaCargaInicial();
 		
 	}
 	
@@ -87,20 +81,14 @@ public class LoginActivity extends Activity{
 				
 			case R.id.btLogin:
 				// Tela MenuActivity
-				Intent intentLogin = new Intent(getBaseContext(),
-						MenuActivity.class);
-				startActivity(intentLogin);
+//				Intent intentLogin = new Intent(getBaseContext(),
+//						MenuActivity.class);
+//				startActivity(intentLogin);
 
-/*				Usuario usuario = null;
-				try {
-					usuario = dao.selectLogin(new Usuario(null, null,
-							etUsuario.getText().toString(), etSenha.getText()
-									.toString(), null, null, null, false, 
-									null, false, null, false, null, null, false));
-				} catch (ParseException e) {
-					// TODO Implementar tratamento de erro
-					e.printStackTrace();
-				}
+				Usuario usuario = dao.selectLogin(new Usuario(null, null,
+										etUsuario.getText().toString(), etSenha.getText()
+										.toString(), null, null, null, false, 
+										null, false, null, false, null, null, false));
 
 				if (usuario != null) {
 					if (usuario.isFlagAtivo()) {
@@ -123,7 +111,7 @@ public class LoginActivity extends Activity{
 				} else {
 					trace("Usuário ou senha inválidos.");
 				}
-*/				
+				
 				Log.d( LogStmt.CATEGORIA_LoginActivity, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
 						" chamando MenuActivity" );
 				break;
@@ -149,6 +137,19 @@ public class LoginActivity extends Activity{
 
 		
 		}
+	}
+	
+	private void executaCargaInicial() {
+		Usuario admin = new Usuario(1, "Admin",
+				"admin", "1234", "newton.arruda@gmail.com", "976898587", 
+				Calendar.getInstance().getTime(), true, 
+				"Alergia 1", true, "Medicação 1", true, 1, "Descrição Usuário.", true);
+
+		if (dao.selectLogin(admin) == null) {
+			dao.insert(admin);
+			trace("A carga inicial foi executada com sucesso!");
+		}
+
 	}
 
 	public void toast(String msg) {
