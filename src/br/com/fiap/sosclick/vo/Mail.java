@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 import br.com.fiap.sosclick.util.GMailSender;
 import br.com.fiap.sosclick.util.LogStmt;
+import br.com.fiap.sosclick.util.MailAsync;
 import br.com.fiap.sosclick.util.Utils;
 
 /**
@@ -27,6 +28,46 @@ public class Mail
 	public Mail( Context context )
 	{
 		this.mContext = context;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getMailto() {
+		return mailto;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public String getSendingMessage() {
+		return sendingMessage;
+	}
+
+	public String getSendingMessageSuccess() {
+		return sendingMessageSuccess;
+	}
+
+	public boolean isProcessVisibility() {
+		return processVisibility;
+	}
+
+	public ArrayList<String> getAttachments() {
+		return attachments;
+	}
+
+	public Context getmContext() {
+		return mContext;
 	}
 
 	public void setGmailUserName(String user) {
@@ -86,7 +127,10 @@ public class Mail
 			valid = false;
 		}
 		if (valid == true) {
-			new startSendingEmail().execute();
+			// Isso é INNERCLASS
+			// new startSendingEmail().execute();
+			// Vamos tentar assim
+			new MailAsync( mContext ).execute( );
 		}
 	}
 

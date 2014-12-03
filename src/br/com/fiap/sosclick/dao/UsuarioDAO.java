@@ -53,21 +53,40 @@ public class UsuarioDAO extends DataSource {
 	}
 
 	public long insert(Usuario usuario) {
+//		this.insertStmt.bindString(1, usuario.getNome());
+//		this.insertStmt.bindString(2, usuario.getUsuario());
+//		this.insertStmt.bindString(3, usuario.getSenha());
+//		this.insertStmt.bindString(4, usuario.getEmail());
+//		// CADE O 5???
+//		this.insertStmt.bindString(6, usuario.getTelefone());
+//		this.insertStmt.bindString(7,
+//				Utils.dateToString(usuario.getDataNascimento()));
+//		this.insertStmt.bindString(8, usuario.isFlagAlergia() ? "S" : "N");
+//		this.insertStmt.bindString(9, usuario.getDescricaoAlergia());
+//		this.insertStmt.bindString(10, usuario.isFlagMedicacao() ? "S" : "N");
+//		this.insertStmt.bindString(11, usuario.getDescricaoMedicacao());
+//		this.insertStmt.bindString(12, usuario.isFlagDiabetes() ? "S" : "N");
+//		this.insertStmt.bindLong(13, usuario.getBitPressao());
+//		this.insertStmt.bindString(14, usuario.getDescricaoUsuario());
+//		this.insertStmt.bindString(15, usuario.isFlagAtivo() ? "S" : "N");
+		
 		this.insertStmt.bindString(1, usuario.getNome());
 		this.insertStmt.bindString(2, usuario.getUsuario());
 		this.insertStmt.bindString(3, usuario.getSenha());
 		this.insertStmt.bindString(4, usuario.getEmail());
-		this.insertStmt.bindString(6, usuario.getTelefone());
-		this.insertStmt.bindString(7,
+		// CADE O 5???
+		this.insertStmt.bindString(5, usuario.getTelefone());
+		this.insertStmt.bindString(6,
 				Utils.dateToString(usuario.getDataNascimento()));
-		this.insertStmt.bindString(8, usuario.isFlagAlergia() ? "S" : "N");
-		this.insertStmt.bindString(9, usuario.getDescricaoAlergia());
-		this.insertStmt.bindString(10, usuario.isFlagMedicacao() ? "S" : "N");
-		this.insertStmt.bindString(11, usuario.getDescricaoMedicacao());
-		this.insertStmt.bindString(12, usuario.isFlagDiabetes() ? "S" : "N");
-		this.insertStmt.bindLong(13, usuario.getBitPressao());
-		this.insertStmt.bindString(14, usuario.getDescricaoUsuario());
-		this.insertStmt.bindString(15, usuario.isFlagAtivo() ? "S" : "N");
+		this.insertStmt.bindString(7, usuario.isFlagAlergia() ? "S" : "N");
+		this.insertStmt.bindString(8, usuario.getDescricaoAlergia());
+		this.insertStmt.bindString(9, usuario.isFlagMedicacao() ? "S" : "N");
+		this.insertStmt.bindString(10, usuario.getDescricaoMedicacao());
+		this.insertStmt.bindString(11, usuario.isFlagDiabetes() ? "S" : "N");
+		this.insertStmt.bindLong(12, usuario.getBitPressao());
+		this.insertStmt.bindString(13, usuario.getDescricaoUsuario());
+		this.insertStmt.bindString(14, usuario.isFlagAtivo() ? "S" : "N");
+		
 		return this.insertStmt.executeInsert();
 	}
 
