@@ -19,7 +19,7 @@ public class SplashScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splashscreen);
 		
-		Log.d( LogStmt.CATEGORIA_SplashScreenActivity, "SplashScreenActivity.onCreate: Início do " 
+		Log.d( LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY, "SplashScreenActivity.onCreate: Início do " 
 				+ R.string.app_name );
 		
 		// Cria a thread para exibir a tela de splash
@@ -33,7 +33,7 @@ public class SplashScreenActivity extends Activity {
 						clicouTela = true;
 					}
 				} catch (InterruptedException ex) {
-					Log.e( LogStmt.CATEGORIA_SplashScreenActivity, "SplashScreenActivity.onCreate: " 
+					Log.e( LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY, "SplashScreenActivity.onCreate: " 
 							+ ex.getMessage( ) );
 					// Log: Implementar log de sistema em arquivo
 					// Inserção de log em database
@@ -46,7 +46,7 @@ public class SplashScreenActivity extends Activity {
 					// se clicou na tela inicia a activity de Login
 					Intent i = new Intent();
 					i.setClass(SplashScreenActivity.this, LoginActivity.class);
-					Log.d( LogStmt.CATEGORIA_SplashScreenActivity, "SplashScreenActivity.onCreate: Encerrado, chamando LoginActivity" );
+					Log.d( LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY, "SplashScreenActivity.onCreate: Encerrado, chamando LoginActivity" );
 					startActivity(i);
 				}
 			}

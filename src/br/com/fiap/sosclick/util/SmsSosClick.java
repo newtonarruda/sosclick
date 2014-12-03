@@ -23,7 +23,7 @@ public class SmsSosClick
 	 */
 	public void enviarSms( Context context, String destino, String mensagem )
 	{
-		Log.d( LogStmt.CATEGORIA_SmsSosClick, "SmsSosClick.enviarSms: Preparando envio" ) ;
+		Log.d( LogStmt.CATEGORIA_SMS_SOS_CLICK, "SmsSosClick.enviarSms: Preparando envio" ) ;
 		
 		try
 		{
@@ -33,7 +33,7 @@ public class SmsSosClick
 		}
 		catch (Exception e)
 		{
-			Log.e( LogStmt.CATEGORIA_SmsSosClick, "Erro ao enviar o SMS: " + e.getMessage( ), e );
+			Log.e( LogStmt.CATEGORIA_SMS_SOS_CLICK, "Erro ao enviar o SMS: " + e.getMessage( ), e );
 			//TODO Inserção de log para Database
 		}
 	}
@@ -56,7 +56,7 @@ public class SmsSosClick
 	
 	private SmsMessage[ ] getMessagesFromIntent( Intent intent )
 	{
-		Log.d( LogStmt.CATEGORIA_SmsSosClick, "SmsSosClick.getMessagesFromIntent: " + intent.getAction( ) ) ;
+		Log.d( LogStmt.CATEGORIA_SMS_SOS_CLICK, "SmsSosClick.getMessagesFromIntent: " + intent.getAction( ) ) ;
 
 		Object messages[] = ( Object[ ] ) ( Object[ ] ) intent.getSerializableExtra( "pdus" ) ;
 
@@ -88,7 +88,7 @@ public class SmsSosClick
 			String celular = msgs[ 0 ].getDisplayOriginatingAddress( ) ;
 			String mensagem = msgs[ 0 ].getDisplayMessageBody( ) ;
 
-			Log.d( LogStmt.CATEGORIA_SmsSosClick, "Sms.Mensagem: " + celular + " -> " + mensagem ) ;
+			Log.d( LogStmt.CATEGORIA_SMS_SOS_CLICK, "Sms.Mensagem: " + celular + " -> " + mensagem ) ;
 			//TODO Inserção de log para Database
 		}
 
