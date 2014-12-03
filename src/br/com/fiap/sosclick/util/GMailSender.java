@@ -21,6 +21,12 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+/**
+ * Classe que representa todas as propriedades do e-mail
+ * @author Mauricio F. Jr
+ * @version 1.0
+ * @since Sprint 1
+ */
 public class GMailSender extends javax.mail.Authenticator
 {
 	private String mailhost = "smtp.gmail.com";   

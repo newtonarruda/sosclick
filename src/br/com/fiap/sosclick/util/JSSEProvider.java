@@ -3,6 +3,12 @@ package br.com.fiap.sosclick.util;
 import java.security.AccessController;
 import java.security.Provider;
 
+/**
+ * Classe que representa o provedor de e-mail
+ * @author Mauricio F. Jr
+ * @version 1.0
+ * @since Sprint 1
+ */
 public final class JSSEProvider extends Provider 
 {
 	private static final long serialVersionUID = 1L;

@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import br.com.fiap.sosclick.R;
 import br.com.fiap.sosclick.util.LogStmt;
+import br.com.fiap.sosclick.util.MailBodySender;
 import br.com.fiap.sosclick.util.SmsAsync;
 
 public class MenuActivity extends Activity {
@@ -22,6 +23,7 @@ public class MenuActivity extends Activity {
 	ImageView ivInformacoes;
 	
 	SmsAsync senderSms; // TESTS
+	MailBodySender senderMail; // TESTS
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class MenuActivity extends Activity {
 		
 		// TESTS
 		// senderSms = new SmsAsync( MenuActivity.this ); --> THIS WORKS!!!
+		senderMail = new MailBodySender( MenuActivity.this );
 		
 	}
 
