@@ -20,9 +20,9 @@ import br.com.fiap.sosclick.vo.Usuario;
 public class CadastroUsuarioActivity extends Activity {
 
 	Usuario usuario;
-	
+
 	Button btSalvar;
-	
+
 	EditText etNome;
 	EditText etUsuario;
 	EditText etSenha;
@@ -36,9 +36,9 @@ public class CadastroUsuarioActivity extends Activity {
 	CheckBox cbFlagDiabete;
 	RadioGroup rgPressao;
 	EditText etDescricaoUsuario;
-	
+
 	UsuarioDAO dao;
-	
+
 	private StringBuffer mensagens = new StringBuffer();
 
 	@Override
@@ -62,15 +62,14 @@ public class CadastroUsuarioActivity extends Activity {
 
 		btSalvar = (Button) findViewById(R.id.btSalvar);
 		btSalvar.setOnClickListener(new ClickerCadastrar());
-		
 
-		if(dao == null){
-			dao = new UsuarioDAO(this);	
+		if (dao == null) {
+			dao = new UsuarioDAO(this);
 		}
 
 		Intent intentLoginToNovoUsuario = getIntent();
 
-		//Implementar Intente de ida e volta
+		// Implementar Intente de ida e volta
 		Bundle bundle = intentLoginToNovoUsuario.getExtras();
 
 		usuario = (Usuario) bundle.getSerializable("novoUsuario");
@@ -90,15 +89,15 @@ public class CadastroUsuarioActivity extends Activity {
 					trace("Erro ao preencher entidade.");
 					break;
 				}
-				
-				if(!validate()){
+
+				if (!validate()) {
 					trace(mensagens.toString());
 					break;
 				}
-				
+
 				if (dao.insert(usuario) == -1) {
 					trace("Não foi possível cadatrar o Usuário.");
-				}else{
+				} else {
 					trace("Usuário cadastrado com sucesso!");
 				}
 
@@ -116,85 +115,93 @@ public class CadastroUsuarioActivity extends Activity {
 			}
 		}
 	}
-	
-	private void fillEntity() throws ParseException{
-		
+
+	private void fillEntity() throws ParseException {
+
 		usuario.setNome(etNome.getText().toString());
 		usuario.setUsuario(etUsuario.getText().toString());
 		usuario.setSenha(etSenha.getText().toString());
 		usuario.setEmail(etEmail.getText().toString());
-		usuario.setTelefone(etTelefone.getText().toString()); //  .isEmpty() ? null : Double.valueOf(etTelefone.getText().toString()));
-		usuario.setDataNascimento(Utils.stringToDate(etDataNascimento.getText().toString())); 
-		usuario.setFlagAlergia(cbFlagAlergia.isChecked()); 
-		usuario.setDescricaoAlergia(etDescricaoAlergia.getText().toString()); 
-		usuario.setFlagMedicacao(cbFlagMedicacao.isChecked()); 
-		usuario.setDescricaoMedicacao(etDescricaoMedicacao.getText().toString()); 
-		usuario.setFlagDiabetes(cbFlagDiabete.isChecked()); 
-		usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ? null : rgPressao.getCheckedRadioButtonId()); 
-		usuario.setDescricaoUsuario(etDescricaoUsuario.getText().toString()); 
+		usuario.setTelefone(etTelefone.getText().toString()); // .isEmpty() ?
+																// null :
+																// Double.valueOf(etTelefone.getText().toString()));
+		usuario.setDataNascimento(Utils.stringToDate(etDataNascimento.getText()
+				.toString()));
+		usuario.setFlagAlergia(cbFlagAlergia.isChecked());
+		usuario.setDescricaoAlergia(etDescricaoAlergia.getText().toString());
+		usuario.setFlagMedicacao(cbFlagMedicacao.isChecked());
+		usuario.setDescricaoMedicacao(etDescricaoMedicacao.getText().toString());
+		usuario.setFlagDiabetes(cbFlagDiabete.isChecked());
+		usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ? null
+				: rgPressao.getCheckedRadioButtonId());
+		usuario.setDescricaoUsuario(etDescricaoUsuario.getText().toString());
 		usuario.setFlagAtivo(true);
 	}
-	
-	private void fillForm(){
+
+	private void fillForm() {
 
 		etNome.setText(usuario.getNome());
 		etUsuario.setText(usuario.getUsuario());
 		etSenha.setText(usuario.getSenha());
 		etEmail.setText(usuario.getEmail());
-		etTelefone.setText(usuario.getTelefone()); // == null ? "" : usuario.getTelefone().toString());
-		etDataNascimento.setText(Utils.dateToString(usuario.getDataNascimento(), "dd/MM/yyyy")); 
-		cbFlagAlergia.setChecked(usuario.isFlagAlergia()); 
-		etDescricaoAlergia.setText(usuario.getDescricaoAlergia()); 
-		cbFlagMedicacao.setChecked(usuario.isFlagMedicacao()); 
-		etDescricaoMedicacao.setText(usuario.getDescricaoMedicacao()); 
-		cbFlagDiabete.setChecked(usuario.isFlagDiabetes());  
-		//rgPressao.get usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ? null : rgPressao.getCheckedRadioButtonId()); TODO Implementar preencimento dos valores dos Radios
-		etDescricaoUsuario.setText(usuario.getDescricaoUsuario()); 
+		etTelefone.setText(usuario.getTelefone()); // == null ? "" :
+													// usuario.getTelefone().toString());
+		etDataNascimento.setText(Utils.dateToString(
+				usuario.getDataNascimento(), Utils.DD_MM_YYYY));
+		cbFlagAlergia.setChecked(usuario.isFlagAlergia());
+		etDescricaoAlergia.setText(usuario.getDescricaoAlergia());
+		cbFlagMedicacao.setChecked(usuario.isFlagMedicacao());
+		etDescricaoMedicacao.setText(usuario.getDescricaoMedicacao());
+		cbFlagDiabete.setChecked(usuario.isFlagDiabetes());
+		// rgPressao.get
+		// usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ?
+		// null : rgPressao.getCheckedRadioButtonId()); TODO Implementar
+		// preencimento dos valores dos Radios
+		etDescricaoUsuario.setText(usuario.getDescricaoUsuario());
 	}
-	
-	private boolean validate(){
+
+	private boolean validate() {
 		boolean retorno = true;
 		mensagens = new StringBuffer();
-		
+
 		// TODO Implementar validação
-		
-//		if(usuario.getNome() == null || usuario.getNome().isEmpty()){
-//			mensagens.append("Informe o Nome do Usuário\n");
-//			retorno = false;
-//		}
-//		if(usuario.getUsuario() == null || usuario.getUsuario().isEmpty()){
-//			mensagens.append("Informe o Login Usuário\n");
-//			retorno = false;
-//		}
-//		if(usuario.getSenha() == null || usuario.getSenha().isEmpty()){
-//			mensagens.append("Informe a Senha do Usuário\n");
-//			retorno = false;
-//		}
-//		if(usuario.getEmail() == null || usuario.getEmail().isEmpty()){
-//			mensagens.append("Informe o E-mail do Usuário\n");
-//			retorno = false;
-//		}
-//		if(usuario.getTelefone() == null || usuario.getTelefone().isEmpty()){
-//			mensagens.append("Informe o Telefone do Usuário\n");
-//			retorno = false;
-//		}
-//		
-//		if(mensagens.toString().isEmpty()){
-//			Usuario usuatioTemp = dao.selectLogin(usuario);
-//			if(usuatioTemp != null){
-//				mensagens.append("Este Usuário já está cadastrado no sistema. Informe outro Usuário\n");
-//				retorno = false;
-//			}
-//		}
-/*		else{
-			mensagens = new StringBuffer();
-			mensagens.append("Este Usuário já está cadastrado no sistema. Informe outro Usuário/n");
-			retorno = false;
-		}
-*/
+
+		// if(usuario.getNome() == null || usuario.getNome().isEmpty()){
+		// mensagens.append("Informe o Nome do Usuário\n");
+		// retorno = false;
+		// }
+		// if(usuario.getUsuario() == null || usuario.getUsuario().isEmpty()){
+		// mensagens.append("Informe o Login Usuário\n");
+		// retorno = false;
+		// }
+		// if(usuario.getSenha() == null || usuario.getSenha().isEmpty()){
+		// mensagens.append("Informe a Senha do Usuário\n");
+		// retorno = false;
+		// }
+		// if(usuario.getEmail() == null || usuario.getEmail().isEmpty()){
+		// mensagens.append("Informe o E-mail do Usuário\n");
+		// retorno = false;
+		// }
+		// if(usuario.getTelefone() == null || usuario.getTelefone().isEmpty()){
+		// mensagens.append("Informe o Telefone do Usuário\n");
+		// retorno = false;
+		// }
+		//
+		// if(mensagens.toString().isEmpty()){
+		// Usuario usuatioTemp = dao.selectLogin(usuario);
+		// if(usuatioTemp != null){
+		// mensagens.append("Este Usuário já está cadastrado no sistema. Informe outro Usuário\n");
+		// retorno = false;
+		// }
+		// }
+		/*
+		 * else{ mensagens = new StringBuffer(); mensagens.append(
+		 * "Este Usuário já está cadastrado no sistema. Informe outro Usuário/n"
+		 * ); retorno = false; }
+		 */
 		return retorno;
 	}
-	
+
 	public void toast(String msg) {
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 	}

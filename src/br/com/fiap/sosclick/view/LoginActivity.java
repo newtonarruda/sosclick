@@ -1,7 +1,5 @@
 package br.com.fiap.sosclick.view;
 
-import java.text.ParseException;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -17,9 +15,8 @@ import br.com.fiap.sosclick.dao.UsuarioDAO;
 import br.com.fiap.sosclick.util.LogStmt;
 import br.com.fiap.sosclick.vo.Usuario;
 
+public class LoginActivity extends Activity {
 
-public class LoginActivity extends Activity{
-	
 	Intent intentMyService;
 	ComponentName service;
 
@@ -30,44 +27,42 @@ public class LoginActivity extends Activity{
 	Button btNovoUsuario;
 
 	UsuarioDAO dao;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		
+
 		etUsuario = (EditText) findViewById(R.id.etUsuario);
 		etSenha = (EditText) findViewById(R.id.etSenha);
 
 		btEntrar = (Button) findViewById(R.id.btLogin);
 		btEntrar.setOnClickListener(new ClickerEntrar());
-		
+
 		btLogin = (Button) findViewById(R.id.btEntrar);
 		btLogin.setOnClickListener(new ClickerEntrar());
 
 		btNovoUsuario = (Button) findViewById(R.id.btNovoUsuario);
 		btNovoUsuario.setOnClickListener(new ClickerEntrar());
 
-//		if (dao == null) {
-//			dao = new UsuarioDAO(this);
-//		}
-//
-//		try {
-//			if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
-//				btNovoUsuario.setEnabled(true);
-//			}
-//
-//			if (dao.isOpenDb() && dao.selectUsuarioAtivo() != null) {
-//				btNovoUsuario.setEnabled(false);
-//			}
-//		} catch (ParseException e) {
-//			btNovoUsuario.setEnabled(false);
-//		}
-	
-		
-		
+		if (dao == null) {
+			dao = new UsuarioDAO(this);
+		}
+		//
+		// try {
+		// if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
+		// btNovoUsuario.setEnabled(true);
+		// }
+		//
+		// if (dao.isOpenDb() && dao.selectUsuarioAtivo() != null) {
+		// btNovoUsuario.setEnabled(false);
+		// }
+		// } catch (ParseException e) {
+		// btNovoUsuario.setEnabled(false);
+		// }
+
 	}
-	
+
 	private class ClickerEntrar implements OnClickListener {
 
 		@Override
@@ -80,62 +75,57 @@ public class LoginActivity extends Activity{
 				Intent intentFacebook = new Intent(getBaseContext(),
 						MenuActivity.class);
 				startActivity(intentFacebook);
-				
-				Log.d( LogStmt.CATEGORIA_LOGIN_ACTIVITY, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
-						" chamando MenuActivity" );
+
+				Log.d(LogStmt.CATEGORIA_LOGIN_ACTIVITY,
+						"LoginActivity.ClickerEntrar.onClick: Encerrando o Login,"
+								+ " chamando MenuActivity");
 				break;
-				
+
 			case R.id.btLogin:
 				// Tela MenuActivity
 				Intent intentLogin = new Intent(getBaseContext(),
 						MenuActivity.class);
 				startActivity(intentLogin);
 
-/*				Usuario usuario = null;
-				try {
-					usuario = dao.selectLogin(new Usuario(null, null,
-							etUsuario.getText().toString(), etSenha.getText()
-									.toString(), null, null, null, false, 
-									null, false, null, false, null, null, false));
-				} catch (ParseException e) {
-					// TODO Implementar tratamento de erro
-					e.printStackTrace();
-				}
-
-				if (usuario != null) {
-					if (usuario.isFlagAtivo()) {
-
-						Intent intentLoginToMenu = new Intent(
-								LoginActivity.this, MenuActivity.class);
-
-						Bundle myData = new Bundle();
-
-						myData.putSerializable("usuario", usuario);
-						intentLoginToMenu.putExtras(myData);
-
-						startActivity(intentLoginToMenu);
-
-					} else {
-						trace("O usuário '" + usuario.getUsuario()
-								+ "' está BLOQUEADO.");
-					}
-
-				} else {
-					trace("Usuário ou senha inválidos.");
-				}
-*/				
-				Log.d( LogStmt.CATEGORIA_LOGIN_ACTIVITY, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
-						" chamando MenuActivity" );
+				/*
+				 * Usuario usuario = null; try { usuario = dao.selectLogin(new
+				 * Usuario(null, null, etUsuario.getText().toString(),
+				 * etSenha.getText() .toString(), null, null, null, false, null,
+				 * false, null, false, null, null, false)); } catch
+				 * (ParseException e) { // TODO Implementar tratamento de erro
+				 * e.printStackTrace(); }
+				 * 
+				 * if (usuario != null) { if (usuario.isFlagAtivo()) {
+				 * 
+				 * Intent intentLoginToMenu = new Intent( LoginActivity.this,
+				 * MenuActivity.class);
+				 * 
+				 * Bundle myData = new Bundle();
+				 * 
+				 * myData.putSerializable("usuario", usuario);
+				 * intentLoginToMenu.putExtras(myData);
+				 * 
+				 * startActivity(intentLoginToMenu);
+				 * 
+				 * } else { trace("O usuário '" + usuario.getUsuario() +
+				 * "' está BLOQUEADO."); }
+				 * 
+				 * } else { trace("Usuário ou senha inválidos."); }
+				 */
+				Log.d(LogStmt.CATEGORIA_LOGIN_ACTIVITY,
+						"LoginActivity.ClickerEntrar.onClick: Encerrando o Login,"
+								+ " chamando MenuActivity");
 				break;
 
 			case R.id.btNovoUsuario:
-				Usuario novoUsuario = new Usuario(null, null,
-						etUsuario.getText().toString(), etSenha.getText()
-						.toString(), null, null, null, false, 
-						null, false, null, false, null, null, false);
 
-				Intent intentLoginToNovoUsuario = new Intent(
-						getBaseContext(), CadastroUsuarioActivity.class);
+				Usuario novoUsuario = new Usuario(null, null, etUsuario
+						.getText().toString(), etSenha.getText().toString(),
+						null, null, null, false, null, false, null, false,
+						null, null, false);
+
+				Intent intentLoginToNovoUsuario = new Intent(getBaseContext(),
+						CadastroUsuarioActivity.class);
 
 				Bundle myData = new Bundle();
 
@@ -147,7 +137,6 @@ public class LoginActivity extends Activity{
 				break;
 			}
 
-		
 		}
 	}
 
@@ -155,8 +144,4 @@ public class LoginActivity extends Activity{
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 	}
 
-	private void trace(String msg) {
-		toast(msg);
-	}
-	
 }

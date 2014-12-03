@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- RECURSOS DE PERMISSÕES SOS CLICK -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +18,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <!-- FIM -->
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -45,6 +46,10 @@
             android:label="@string/usuario" >
         </activity>
         <activity
+            android:name=".view.CadastroUsuarioActivity"
+            android:label="@string/cadastro_usuario" >
+        </activity>
+        <activity
             android:name=".view.PlanodesaudeActivity"
             android:label="@string/planodesaude" >
         </activity>
@@ -60,9 +65,10 @@
             android:name=".view.InformacoesActivity"
             android:label="@string/informacoes" >
         </activity>
-        <meta-data 
-            android:name="com.facebook.sdk.ApplicationId" 
-            android:value="@string/facebook_app_id"/>
-        </application>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+    </application>
 
 </manifest>
