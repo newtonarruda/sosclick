@@ -48,21 +48,21 @@ public class LoginActivity extends Activity{
 		btNovoUsuario = (Button) findViewById(R.id.btNovoUsuario);
 		btNovoUsuario.setOnClickListener(new ClickerEntrar());
 
-		if (dao == null) {
-			dao = new UsuarioDAO(this);
-		}
-
-		try {
-			if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
-				btNovoUsuario.setEnabled(true);
-			}
-
-			if (dao.isOpenDb() && dao.selectUsuarioAtivo() != null) {
-				btNovoUsuario.setEnabled(false);
-			}
-		} catch (ParseException e) {
-			btNovoUsuario.setEnabled(false);
-		}
+//		if (dao == null) {
+//			dao = new UsuarioDAO(this);
+//		}
+//
+//		try {
+//			if (dao.isOpenDb() && dao.selectUsuarioAtivo() == null) {
+//				btNovoUsuario.setEnabled(true);
+//			}
+//
+//			if (dao.isOpenDb() && dao.selectUsuarioAtivo() != null) {
+//				btNovoUsuario.setEnabled(false);
+//			}
+//		} catch (ParseException e) {
+//			btNovoUsuario.setEnabled(false);
+//		}
 	
 		
 		
@@ -81,7 +81,7 @@ public class LoginActivity extends Activity{
 						MenuActivity.class);
 				startActivity(intentFacebook);
 				
-				Log.d( LogStmt.CATEGORIA_LoginActivity, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
+				Log.d( LogStmt.CATEGORIA_LOGIN_ACTIVITY, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
 						" chamando MenuActivity" );
 				break;
 				
@@ -124,7 +124,7 @@ public class LoginActivity extends Activity{
 					trace("Usuário ou senha inválidos.");
 				}
 */				
-				Log.d( LogStmt.CATEGORIA_LoginActivity, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
+				Log.d( LogStmt.CATEGORIA_LOGIN_ACTIVITY, "LoginActivity.ClickerEntrar.onClick: Encerrando o Login," + 
 						" chamando MenuActivity" );
 				break;
 
