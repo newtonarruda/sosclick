@@ -52,13 +52,16 @@ public class CadastroUsuarioActivity extends Activity {
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		etTelefone = (EditText) findViewById(R.id.etTelefone);
 		etDataNascimento = (EditText) findViewById(R.id.etDataNascimento);
-		cbFlagAlergia = (CheckBox) findViewById(R.id.cbFlagAlergia);
-		etDescricaoAlergia = (EditText) findViewById(R.id.etDescricaoAlergia);
-		cbFlagMedicacao = (CheckBox) findViewById(R.id.cbFlagMedicacao);
-		etDescricaoMedicacao = (EditText) findViewById(R.id.etDescricaoMedicacao);
-		cbFlagDiabete = (CheckBox) findViewById(R.id.cbFlagDiabete);
-		rgPressao = (RadioGroup) findViewById(R.id.rgPressao);
-		etDescricaoUsuario = (EditText) findViewById(R.id.etDescricaoUsuario);
+		// cbFlagAlergia = (CheckBox) findViewById(R.id.cbFlagAlergia);
+		// etDescricaoAlergia = (EditText)
+		// findViewById(R.id.etDescricaoAlergia);
+		// cbFlagMedicacao = (CheckBox) findViewById(R.id.cbFlagMedicacao);
+		// etDescricaoMedicacao = (EditText)
+		// findViewById(R.id.etDescricaoMedicacao);
+		// cbFlagDiabete = (CheckBox) findViewById(R.id.cbFlagDiabete);
+		// rgPressao = (RadioGroup) findViewById(R.id.rgPressao);
+		// etDescricaoUsuario = (EditText)
+		// findViewById(R.id.etDescricaoUsuario);
 
 		btSalvar = (Button) findViewById(R.id.btSalvar);
 		btSalvar.setOnClickListener(new ClickerCadastrar());
@@ -117,7 +120,7 @@ public class CadastroUsuarioActivity extends Activity {
 	}
 
 	private void fillEntity() throws ParseException {
-
+		usuario = new Usuario();
 		usuario.setNome(etNome.getText().toString());
 		usuario.setUsuario(etUsuario.getText().toString());
 		usuario.setSenha(etSenha.getText().toString());
@@ -127,14 +130,15 @@ public class CadastroUsuarioActivity extends Activity {
 																// Double.valueOf(etTelefone.getText().toString()));
 		usuario.setDataNascimento(Utils.stringToDate(etDataNascimento.getText()
 				.toString()));
-		usuario.setFlagAlergia(cbFlagAlergia.isChecked());
-		usuario.setDescricaoAlergia(etDescricaoAlergia.getText().toString());
-		usuario.setFlagMedicacao(cbFlagMedicacao.isChecked());
-		usuario.setDescricaoMedicacao(etDescricaoMedicacao.getText().toString());
-		usuario.setFlagDiabetes(cbFlagDiabete.isChecked());
-		usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ? null
-				: rgPressao.getCheckedRadioButtonId());
-		usuario.setDescricaoUsuario(etDescricaoUsuario.getText().toString());
+
+		// usuario.setFlagAlergia(cbFlagAlergia.isChecked());
+		// usuario.setDescricaoAlergia(etDescricaoAlergia.getText().toString());
+		// usuario.setFlagMedicacao(cbFlagMedicacao.isChecked());
+		// usuario.setDescricaoMedicacao(etDescricaoMedicacao.getText().toString());
+		// usuario.setFlagDiabetes(cbFlagDiabete.isChecked());
+		// usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ?
+		// null : rgPressao.getCheckedRadioButtonId());
+		// usuario.setDescricaoUsuario(etDescricaoUsuario.getText().toString());
 		usuario.setFlagAtivo(true);
 	}
 
@@ -144,20 +148,22 @@ public class CadastroUsuarioActivity extends Activity {
 		etUsuario.setText(usuario.getUsuario());
 		etSenha.setText(usuario.getSenha());
 		etEmail.setText(usuario.getEmail());
+
 		etTelefone.setText(usuario.getTelefone()); // == null ? "" :
 													// usuario.getTelefone().toString());
 		etDataNascimento.setText(Utils.dateToString(
 				usuario.getDataNascimento(), Utils.DD_MM_YYYY));
-		cbFlagAlergia.setChecked(usuario.isFlagAlergia());
-		etDescricaoAlergia.setText(usuario.getDescricaoAlergia());
-		cbFlagMedicacao.setChecked(usuario.isFlagMedicacao());
-		etDescricaoMedicacao.setText(usuario.getDescricaoMedicacao());
-		cbFlagDiabete.setChecked(usuario.isFlagDiabetes());
-		// rgPressao.get
+		// cbFlagAlergia.setChecked(usuario.isFlagAlergia());
+		// etDescricaoAlergia.setText(usuario.getDescricaoAlergia());
+		// cbFlagMedicacao.setChecked(usuario.isFlagMedicacao());
+		// etDescricaoMedicacao.setText(usuario.getDescricaoMedicacao());
+		// cbFlagDiabete.setChecked(usuario.isFlagDiabetes());
+		// //rgPressao.get
 		// usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ?
 		// null : rgPressao.getCheckedRadioButtonId()); TODO Implementar
 		// preencimento dos valores dos Radios
-		etDescricaoUsuario.setText(usuario.getDescricaoUsuario());
+		// etDescricaoUsuario.setText(usuario.getDescricaoUsuario());
+
 	}
 
 	private boolean validate() {

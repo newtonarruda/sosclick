@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_app" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/cadastro_saude_usuario"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+            android:id="@+id/cbFlagAlergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/flagAlergia" />
+
+        <EditText
+            android:id="@+id/etDescricaoAlergia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="@string/txtEmptyAlergias" />
+
+        <CheckBox
+            android:id="@+id/cbFlagMedicacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/flagMedicacao" />
+
+        <EditText
+            android:id="@+id/etDescricaoMedicacao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="@string/txtEmptyMedicacoes" />
+
+        <CheckBox
+            android:id="@+id/cbFlagDiabete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/flagDiabete" />
+
+        <RadioGroup
+            android:id="@+id/rgPressao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" 
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/rHipotenso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bitHipotenso" />
+
+            <RadioButton
+                android:id="@+id/rHipertenso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bitHipertenso" />
+
+            <RadioButton
+                android:id="@+id/rPadrao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bitPadrao" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/etDescricaoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="@string/txtEmptyDescricaoUsuario" />
+
+       <Button
+            android:id="@+id/btSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/btSalvar"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</RelativeLayout>

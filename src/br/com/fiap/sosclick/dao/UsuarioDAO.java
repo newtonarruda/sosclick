@@ -71,61 +71,76 @@ public class UsuarioDAO extends DataSource {
 		return this.insertStmt.executeInsert();
 	}
 
-	public Usuario selectLogin(Usuario usuario) throws ParseException {
+	public Usuario selectLogin(Usuario usuario) {
 		Usuario resultado = null;
 
 		Cursor c = db.rawQuery(SELECT_LOGIN,
 				new String[] { usuario.getUsuario(), usuario.getSenha() });
-		if (c.moveToFirst()) {
-			resultado = new Usuario(c.getInt(c.getColumnIndex("id_usuario")),
-					c.getString(c.getColumnIndex("nome")), c.getString(c
-							.getColumnIndex("usuario")), c.getString(c
-							.getColumnIndex("senha")), c.getString(c
-							.getColumnIndex("email")), c.getString(c
-							.getColumnIndex("telefone")), Utils.stringToDate(c
-							.getString(c.getColumnIndex("data_nascimento"))), c
-							.getString(c.getColumnIndex("flag_alergia"))
-							.equalsIgnoreCase("S") ? true : false,
-					c.getString(c.getColumnIndex("descricao_alergia")), c
-							.getString(c.getColumnIndex("flag_medicacao"))
-							.equalsIgnoreCase("S") ? true : false,
-					c.getString(c.getColumnIndex("descricao_medicacao")), c
-							.getString(c.getColumnIndex("flag_diabetes"))
-							.equalsIgnoreCase("S") ? true : false, c.getInt(c
-							.getColumnIndex("bit_pressao")), c.getString(c
-							.getColumnIndex("descricao_usuario")), c.getString(
-							c.getColumnIndex("flag_ativo")).equalsIgnoreCase(
-							"S") ? true : false);
+
+		try {
+			if (c.moveToFirst()) {
+				resultado = new Usuario(
+						c.getInt(c.getColumnIndex("id_usuario")), c.getString(c
+								.getColumnIndex("nome")), c.getString(c
+								.getColumnIndex("usuario")), c.getString(c
+								.getColumnIndex("senha")), c.getString(c
+								.getColumnIndex("email")), c.getString(c
+								.getColumnIndex("telefone")),
+						Utils.stringToDate(c.getString(c
+								.getColumnIndex("data_nascimento"))), c
+								.getString(c.getColumnIndex("flag_alergia"))
+								.equalsIgnoreCase("S") ? true : false,
+						c.getString(c.getColumnIndex("descricao_alergia")), c
+								.getString(c.getColumnIndex("flag_medicacao"))
+								.equalsIgnoreCase("S") ? true : false,
+						c.getString(c.getColumnIndex("descricao_medicacao")), c
+								.getString(c.getColumnIndex("flag_diabetes"))
+								.equalsIgnoreCase("S") ? true : false,
+						c.getInt(c.getColumnIndex("bit_pressao")),
+						c.getString(c.getColumnIndex("descricao_usuario")), c
+								.getString(c.getColumnIndex("flag_ativo"))
+								.equalsIgnoreCase("S") ? true : false);
+			}
+		} catch (ParseException e) {
+			resultado = null;
 		}
 		c.close();
 
 		return resultado;
 	}
 
-	public Usuario selectUsuarioAtivo() throws ParseException {
+	public Usuario selectUsuarioAtivo() {
+
 		Usuario resultado = null;
 
 		Cursor c = db.rawQuery(SELECT_USUARIO_ATIVO, new String[] { "S" });
-		if (c.moveToFirst()) {
-			resultado = new Usuario(c.getInt(c.getColumnIndex("id_usuario")),
-					c.getString(c.getColumnIndex("nome")), c.getString(c
-							.getColumnIndex("usuario")), c.getString(c
-							.getColumnIndex("senha")), c.getString(c
-							.getColumnIndex("email")), c.getString(c
-							.getColumnIndex("telefone")), Utils.stringToDate(c
-							.getString(c.getColumnIndex("data_nascimento"))), c
-							.getString(c.getColumnIndex("flag_alergia"))
-							.equalsIgnoreCase("S") ? true : false,
-					c.getString(c.getColumnIndex("descricao_alergia")), c
-							.getString(c.getColumnIndex("flag_medicacao"))
-							.equalsIgnoreCase("S") ? true : false,
-					c.getString(c.getColumnIndex("descricao_medicacao")), c
-							.getString(c.getColumnIndex("flag_diabetes"))
-							.equalsIgnoreCase("S") ? true : false, c.getInt(c
-							.getColumnIndex("bit_pressao")), c.getString(c
-							.getColumnIndex("descricao_usuario")), c.getString(
-							c.getColumnIndex("flag_ativo")).equalsIgnoreCase(
-							"S") ? true : false);
+
+		try {
+			if (c.moveToFirst()) {
+				resultado = new Usuario(
+						c.getInt(c.getColumnIndex("id_usuario")), c.getString(c
+								.getColumnIndex("nome")), c.getString(c
+								.getColumnIndex("usuario")), c.getString(c
+								.getColumnIndex("senha")), c.getString(c
+								.getColumnIndex("email")), c.getString(c
+								.getColumnIndex("telefone")),
+						Utils.stringToDate(c.getString(c
+								.getColumnIndex("data_nascimento"))), c
+								.getString(c.getColumnIndex("flag_alergia"))
+								.equalsIgnoreCase("S") ? true : false,
+						c.getString(c.getColumnIndex("descricao_alergia")), c
+								.getString(c.getColumnIndex("flag_medicacao"))
+								.equalsIgnoreCase("S") ? true : false,
+						c.getString(c.getColumnIndex("descricao_medicacao")), c
+								.getString(c.getColumnIndex("flag_diabetes"))
+								.equalsIgnoreCase("S") ? true : false,
+						c.getInt(c.getColumnIndex("bit_pressao")),
+						c.getString(c.getColumnIndex("descricao_usuario")), c
+								.getString(c.getColumnIndex("flag_ativo"))
+								.equalsIgnoreCase("S") ? true : false);
+			}
+		} catch (ParseException e) {
+			resultado = null;
 		}
 		c.close();
 
