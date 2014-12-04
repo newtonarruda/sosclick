@@ -6,17 +6,17 @@ import android.util.Log;
 
 public class MailBodySender 
 {
-	
-	
 	public MailBodySender( Context context )
 	{
 		// DELETE THIS LINE AFTER YOU FIND YOUR ENCRPYTED PASSWORD
 //		Log.d( LogStmt.CATEGORIA_MAIL_BODY_SENDER , "MailBodySender(context): " + Utils.encryptIt("W@fF_S0sCl1cK") );
-	
+		
 		Mail mail = new Mail( context );
 		mail.setGmailUserName("waff.sosclick@gmail.com");
-		mail.setGmailPassword("Ulenkchp1HVHuL3QESJPAQ=="); // Inserir a senha criptogragada
-
+		// mail.setGmailPassword("Ulenkchp1HVHuL3QESJPAQ=="); // Inserir a senha criptogragada
+		mail.setGmailPassword( Utils.decryptIt( "Ulenkchp1HVHuL3QESJPAQ==" ) ); 
+		Log.d( LogStmt.CATEGORIA_MAIL_BODY_SENDER, "MailBodySender.getDecrypt:" + mail.getPassword() );
+		
 //		mail.setMailTo(""); // PARA QUEM?
 		mail.setMailTo("m.frasson.jr@gmail.com");
 		//		mail.setMailTo("cwaquil@gmail.com,newton.arruda@gmail.com,ronfaraone@gmail.com," 

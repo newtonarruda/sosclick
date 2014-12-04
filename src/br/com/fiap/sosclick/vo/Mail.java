@@ -127,14 +127,16 @@ public class Mail
 			valid = false;
 		}
 		if (valid == true) {
+			StartSendingEmail sendingEmail;
 			// Isso é INNERCLASS
-			// new startSendingEmail().execute();
+			sendingEmail = new StartSendingEmail();
+			sendingEmail.execute();
 			// Vamos tentar assim
-			new MailAsync( mContext ).execute( );
+			//new MailAsync( mContext ).execute( );
 		}
 	}
 
-	public class startSendingEmail extends AsyncTask<String, Void, String> {
+	public class StartSendingEmail extends AsyncTask<String, Void, String> {
 		ProgressDialog pd;
 
 		@Override
@@ -171,7 +173,7 @@ public class Mail
 			catch (Exception e) 
 			{
 				Log.e( LogStmt.CATEGORIA_MAIL, "Mail.startSendingEmail.doInBackground(): " 
-						+ e.getMessage().toString());
+						+ e.getMessage().toString() );
 			}
 			return null;
 		}
