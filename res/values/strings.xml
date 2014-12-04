@@ -17,6 +17,7 @@
     <string name="txtEmptyUsuario">Usuário</string>
     <string name="facebook_app_id">305374419667233</string>
     <string name="informacoes">Informações</string>
+    <string name="alertaBackgroundService">Serviço background</string>
     
 	<string name="cadastro_usuario">Cadastro de Usuário</string>
 	<string name="cadastro_saude_usuario">Cadastro da Saúde do Usuário</string>

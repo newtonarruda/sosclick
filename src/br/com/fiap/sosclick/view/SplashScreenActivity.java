@@ -1,8 +1,10 @@
 package br.com.fiap.sosclick.view;
 
 import br.com.fiap.sosclick.R;
+import br.com.fiap.sosclick.service.AlertaBackgroundService;
 import br.com.fiap.sosclick.util.LogStmt;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,14 +16,13 @@ public class SplashScreenActivity extends Activity {
 	private boolean clicouTela = false;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splashscreen);
-		
-		Log.d( LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY, "SplashScreenActivity.onCreate: Início do " 
-				+ R.string.app_name );
-		
+
+		Log.d(LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY,
+				"SplashScreenActivity.onCreate: Início do " + R.string.app_name);
+
 		// Cria a thread para exibir a tela de splash
 		threadSplash = new Thread() {
 			@Override
@@ -33,8 +34,8 @@ public class SplashScreenActivity extends Activity {
 						clicouTela = true;
 					}
 				} catch (InterruptedException ex) {
-					Log.e( LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY, "SplashScreenActivity.onCreate: " 
-							+ ex.getMessage( ) );
+					Log.e(LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY,
+							"SplashScreenActivity.onCreate: " + ex.getMessage());
 					// Log: Implementar log de sistema em arquivo
 					// Inserção de log em database
 				}
@@ -46,13 +47,29 @@ public class SplashScreenActivity extends Activity {
 					// se clicou na tela inicia a activity de Login
 					Intent i = new Intent();
 					i.setClass(SplashScreenActivity.this, LoginActivity.class);
-					Log.d( LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY, "SplashScreenActivity.onCreate: Encerrado, chamando LoginActivity" );
+					Log.d(LogStmt.CATEGORIA_SPLASH_SCREEN_ACTIVITY,
+							"SplashScreenActivity.onCreate: Encerrado, chamando LoginActivity");
 					startActivity(i);
 				}
 			}
 		};
 
 		threadSplash.start();
+
+		startServicosBackground();
+	}
+
+	private void startServicosBackground() {
+
+		Context context = getApplicationContext();
+
+		// use this to start and trigger a service
+		Intent i = new Intent(context, AlertaBackgroundService.class);
+		// potentially add data to the intent
+		i.putExtra("KEY1",
+				"XXXXXXXXXXX - Value to be used by the service - XXXXXXXXXXX");
+		context.startService(i);
+
 	}
 
 	@Override

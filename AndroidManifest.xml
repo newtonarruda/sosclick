@@ -8,8 +8,6 @@
         android:minSdkVersion="17"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <!-- RECURSOS DE PERMISSÕES SOS CLICK -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +15,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <!-- FIM -->
 
     <application
@@ -65,6 +64,12 @@
             android:name=".view.InformacoesActivity"
             android:label="@string/informacoes" >
         </activity>
+
+        <service
+            android:name=".service.AlertaBackgroundService"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/alertaBackgroundService" >
+        </service>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
