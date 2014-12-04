@@ -3,6 +3,15 @@
     android:layout_height="fill_parent"
     android:background="@drawable/background_app" >
 
+<FrameLayout
+        android:layout_width="270dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#FFFFFF" >
+
+    </FrameLayout>
+    
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="250dp"
