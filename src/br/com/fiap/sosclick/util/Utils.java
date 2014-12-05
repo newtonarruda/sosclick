@@ -28,6 +28,7 @@ import android.util.Log;
  * @author Newton Arruda
  * @version 1.0
  * @since Sprint 1.0
+ * 
  */
 public class Utils {
 
@@ -48,7 +49,11 @@ public class Utils {
 	}
 
 	public static Date stringToDate(String data) throws ParseException {
-		return new SimpleDateFormat(DD_MM_YYYY).parse(data);
+		Date retorno = new Date();
+		if (null != data) {
+			retorno = new SimpleDateFormat(DD_MM_YYYY).parse(data);
+		}
+		return retorno;
 	}
 
 	public static Date stringToDate(String data, String formato)

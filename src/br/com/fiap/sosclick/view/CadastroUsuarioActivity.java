@@ -1,6 +1,7 @@
 package br.com.fiap.sosclick.view;
 
 import java.text.ParseException;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,12 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.com.fiap.sosclick.R;
 import br.com.fiap.sosclick.dao.UsuarioDAO;
-import br.com.fiap.sosclick.util.Utils;
 import br.com.fiap.sosclick.vo.Usuario;
 
 public class CadastroUsuarioActivity extends Activity {
@@ -29,7 +30,7 @@ public class CadastroUsuarioActivity extends Activity {
 	EditText etSenha;
 	EditText etEmail;
 	EditText etTelefone;
-	EditText etDataNascimento;
+	DatePicker dpNascimento;
 
 	UsuarioDAO dao;
 
@@ -46,7 +47,7 @@ public class CadastroUsuarioActivity extends Activity {
 		etSenha = (EditText) findViewById(R.id.etSenha);
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		etTelefone = (EditText) findViewById(R.id.etTelefone);
-		etDataNascimento = (EditText) findViewById(R.id.etDataNascimento);
+		dpNascimento = (DatePicker) findViewById(R.id.dpNascimento);
 
 		btSalvar = (Button) findViewById(R.id.btSalvar);
 		btSalvar.setOnClickListener(new ClickerCadastrar());
@@ -62,11 +63,11 @@ public class CadastroUsuarioActivity extends Activity {
 
 		origem = (String) bundle.getSerializable("origem");
 		usuario = (Usuario) bundle.getSerializable("usuario");
-		
-		if("Login".equalsIgnoreCase(origem)){
+
+		if ("Login".equalsIgnoreCase(origem)) {
 			tvLogin.setText(R.string.usuario);
 			etUsuario.setText(usuario.getUsuario());
-		}else if("Menu".equalsIgnoreCase(origem)){
+		} else if ("Menu".equalsIgnoreCase(origem)) {
 			tvLogin.setText(R.string.cadastro_usuario);
 			fillForm();
 		}
@@ -90,13 +91,13 @@ public class CadastroUsuarioActivity extends Activity {
 					trace(mensagens.toString());
 					break;
 				}
-				if("Login".equalsIgnoreCase(origem)){
+				if ("Login".equalsIgnoreCase(origem)) {
 					if (dao.insert(usuario) == -1) {
 						trace("Não foi possível cadatrar o Usuário.");
 					} else {
 						trace("Usuário cadastrado com sucesso!");
 					}
-				} else if("Menu".equalsIgnoreCase(origem)){
+				} else if ("Menu".equalsIgnoreCase(origem)) {
 					if (dao.updateUsuario(usuario) == -1) {
 						trace("Não foi possível salvar o Usuário.");
 					} else {
@@ -106,12 +107,9 @@ public class CadastroUsuarioActivity extends Activity {
 
 				Intent intentCadatroUsuarioToMenu = new Intent(
 						getBaseContext(), MenuActivity.class);
-
 				Bundle myData = new Bundle();
-
 				myData.putSerializable("usuario", usuario);
 				intentCadatroUsuarioToMenu.putExtras(myData);
-
 				startActivity(intentCadatroUsuarioToMenu);
 
 				break;
@@ -120,17 +118,15 @@ public class CadastroUsuarioActivity extends Activity {
 	}
 
 	private void fillEntity() throws ParseException {
-		//usuario = new Usuario();
 		usuario.setNome(etNome.getText().toString());
 		usuario.setUsuario(etUsuario.getText().toString());
 		usuario.setSenha(etSenha.getText().toString());
 		usuario.setEmail(etEmail.getText().toString());
-		usuario.setTelefone(etTelefone.getText().toString()); // .isEmpty() ?
-																// null :
-																// Double.valueOf(etTelefone.getText().toString()));
-		usuario.setDataNascimento(Utils.stringToDate(etDataNascimento.getText()
-				.toString()));
-
+		usuario.setTelefone(etTelefone.getText().toString());
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(dpNascimento.getYear(), dpNascimento.getMonth(),
+				dpNascimento.getDayOfMonth());
+		usuario.setDataNascimento(calendar.getTime());
 		usuario.setFlagAtivo(true);
 	}
 
@@ -140,11 +136,13 @@ public class CadastroUsuarioActivity extends Activity {
 		etUsuario.setText(usuario.getUsuario());
 		etSenha.setText(usuario.getSenha());
 		etEmail.setText(usuario.getEmail());
-
-		etTelefone.setText(usuario.getTelefone()); // == null ? "" :
-													// usuario.getTelefone().toString());
-		etDataNascimento.setText(Utils.dateToString(
-				usuario.getDataNascimento(), Utils.DD_MM_YYYY));
+		etTelefone.setText(usuario.getTelefone());
+		Calendar c = Calendar.getInstance();
+		c.setTime(usuario.getDataNascimento());
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH);
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		dpNascimento.init(year, month, day, null);
 
 	}
 
