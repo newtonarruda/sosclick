@@ -69,6 +69,11 @@
             android:label="@string/informacoes" >
         </activity>
 
+        <activity
+            android:name=".view.AlertActivity"
+            android:label="@string/alert" >
+        </activity>
+        
         <service
             android:name=".service.AlertaBackgroundService"
             android:icon="@drawable/ic_launcher"

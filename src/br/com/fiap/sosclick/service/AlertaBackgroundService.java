@@ -12,6 +12,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 import br.com.fiap.sosclick.util.LogStmt;
+import br.com.fiap.sosclick.view.AlertActivity;
 import br.com.fiap.sosclick.view.LoginActivity;
 
 public class AlertaBackgroundService extends Service implements
@@ -106,7 +107,7 @@ public class AlertaBackgroundService extends Service implements
 				
 				// TODO Trocar essa activity pela do alerta 
 				Intent intent = new Intent(getBaseContext(),
-						LoginActivity.class);
+						AlertActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 				Log.d(LogStmt.CATEGORIA_LOGIN_ACTIVITY,

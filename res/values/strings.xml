@@ -34,4 +34,5 @@
 	<string name="flagAlergia">Alérgico ?</string>
 	<string name="txtEmptyDescricaoUsuario">Descrições………</string>
 	<string name="btSalvar">Salvar</string>
+	<string name="alert">Alert</string>
 </resources>
