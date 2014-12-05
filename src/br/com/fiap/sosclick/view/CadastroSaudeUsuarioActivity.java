@@ -18,16 +18,11 @@ import br.com.fiap.sosclick.vo.Usuario;
 
 public class CadastroSaudeUsuarioActivity extends Activity {
 
+	String origem;
 	Usuario usuario;
 	
 	Button btSalvar;
 	
-	EditText etNome;
-	EditText etUsuario;
-	EditText etSenha;
-	EditText etEmail;
-	EditText etTelefone;
-	EditText etDataNascimento;
 	CheckBox cbFlagAlergia;
 	EditText etDescricaoAlergia;
 	CheckBox cbFlagMedicacao;
@@ -45,12 +40,6 @@ public class CadastroSaudeUsuarioActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastro_saude_usuario);
 
-//		etNome = (EditText) findViewById(R.id.etNome);
-//		etUsuario = (EditText) findViewById(R.id.etUsuario);
-//		etSenha = (EditText) findViewById(R.id.etSenha);
-//		etEmail = (EditText) findViewById(R.id.etEmail);
-//		etTelefone = (EditText) findViewById(R.id.etTelefone);
-//		etDataNascimento = (EditText) findViewById(R.id.etDataNascimento);
 		cbFlagAlergia = (CheckBox) findViewById(R.id.cbFlagAlergia);
 		etDescricaoAlergia = (EditText) findViewById(R.id.etDescricaoAlergia);
 		cbFlagMedicacao = (CheckBox) findViewById(R.id.cbFlagMedicacao);
@@ -67,12 +56,13 @@ public class CadastroSaudeUsuarioActivity extends Activity {
 			dao = new UsuarioDAO(this);	
 		}
 
-		Intent intentLoginToNovoUsuario = getIntent();
+		Intent intentMenuToSaudeUsuario = getIntent();
 
 		//Implementar Intente de ida e volta
-		Bundle bundle = intentLoginToNovoUsuario.getExtras();
+		Bundle bundle = intentMenuToSaudeUsuario.getExtras();
 
-		usuario = (Usuario) bundle.getSerializable("novoUsuario");
+		origem = (String) bundle.getSerializable("origem");
+		usuario = (Usuario) bundle.getSerializable("usuario");
 		fillForm();
 	}
 
@@ -95,21 +85,22 @@ public class CadastroSaudeUsuarioActivity extends Activity {
 					break;
 				}
 				
-				if (dao.insert(usuario) == -1) {
-					trace("Não foi possível cadatrar o Usuário.");
+				if (dao.updateSaudeUsuario(usuario) == -1) {
+					trace("Não foi possível cadatrar as informações de Saúde do Usuário.");
 				}else{
-					trace("Usuário cadastrado com sucesso!");
+					trace("Informações de Saúde do Usuário cadastrads com sucesso!");
 				}
 
-				Intent intentLoginToMenu = new Intent(
-						CadastroSaudeUsuarioActivity.this, MenuActivity.class);
+				Intent intentCadastroSaudeUsuarioToMenu = new Intent(
+						getBaseContext(), MenuActivity.class);
 
 				Bundle myData = new Bundle();
 
+				myData.putSerializable("origem", "Saude");
 				myData.putSerializable("usuario", usuario);
-				intentLoginToMenu.putExtras(myData);
+				intentCadastroSaudeUsuarioToMenu.putExtras(myData);
 
-				startActivity(intentLoginToMenu);
+				startActivity(intentCadastroSaudeUsuarioToMenu);
 
 				break;
 			}
@@ -117,31 +108,17 @@ public class CadastroSaudeUsuarioActivity extends Activity {
 	}
 	
 	private void fillEntity() throws ParseException{
-//		usuario = new Usuario();
-//		usuario.setNome(etNome.getText().toString());
-//		usuario.setUsuario(etUsuario.getText().toString());
-//		usuario.setSenha(etSenha.getText().toString());
-//		usuario.setEmail(etEmail.getText().toString());
-//		usuario.setTelefone(etTelefone.getText().toString()); //  .isEmpty() ? null : Double.valueOf(etTelefone.getText().toString()));
-//		usuario.setDataNascimento(Utils.stringToDate(etDataNascimento.getText().toString())); 
 		usuario.setFlagAlergia(cbFlagAlergia.isChecked()); 
 		usuario.setDescricaoAlergia(etDescricaoAlergia.getText().toString()); 
 		usuario.setFlagMedicacao(cbFlagMedicacao.isChecked()); 
 		usuario.setDescricaoMedicacao(etDescricaoMedicacao.getText().toString()); 
 		usuario.setFlagDiabetes(cbFlagDiabete.isChecked()); 
-		usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ? null : rgPressao.getCheckedRadioButtonId()); 
+		//usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ? null : rgPressao.getCheckedRadioButtonId()); 
 		usuario.setDescricaoUsuario(etDescricaoUsuario.getText().toString()); 
-//		usuario.setFlagAtivo(true);
 	}
 	
 	private void fillForm(){
 
-//		etNome.setText(usuario.getNome());
-//		etUsuario.setText(usuario.getUsuario());
-//		etSenha.setText(usuario.getSenha());
-//		etEmail.setText(usuario.getEmail());
-//		etTelefone.setText(usuario.getTelefone()); // == null ? "" : usuario.getTelefone().toString());
-//		etDataNascimento.setText(Utils.dateToString(usuario.getDataNascimento(), "dd/MM/yyyy")); 
 		cbFlagAlergia.setChecked(usuario.isFlagAlergia()); 
 		etDescricaoAlergia.setText(usuario.getDescricaoAlergia()); 
 		cbFlagMedicacao.setChecked(usuario.isFlagMedicacao()); 

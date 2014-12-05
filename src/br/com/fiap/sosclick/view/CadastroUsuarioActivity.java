@@ -8,9 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import br.com.fiap.sosclick.R;
 import br.com.fiap.sosclick.dao.UsuarioDAO;
@@ -19,23 +18,18 @@ import br.com.fiap.sosclick.vo.Usuario;
 
 public class CadastroUsuarioActivity extends Activity {
 
+	String origem;
 	Usuario usuario;
 
 	Button btSalvar;
 
+	TextView tvLogin;
 	EditText etNome;
 	EditText etUsuario;
 	EditText etSenha;
 	EditText etEmail;
 	EditText etTelefone;
 	EditText etDataNascimento;
-	CheckBox cbFlagAlergia;
-	EditText etDescricaoAlergia;
-	CheckBox cbFlagMedicacao;
-	EditText etDescricaoMedicacao;
-	CheckBox cbFlagDiabete;
-	RadioGroup rgPressao;
-	EditText etDescricaoUsuario;
 
 	UsuarioDAO dao;
 
@@ -46,22 +40,13 @@ public class CadastroUsuarioActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastro_usuario);
 
+		tvLogin = (TextView) findViewById(R.id.tvLogin);
 		etNome = (EditText) findViewById(R.id.etNome);
 		etUsuario = (EditText) findViewById(R.id.etUsuario);
 		etSenha = (EditText) findViewById(R.id.etSenha);
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		etTelefone = (EditText) findViewById(R.id.etTelefone);
 		etDataNascimento = (EditText) findViewById(R.id.etDataNascimento);
-		// cbFlagAlergia = (CheckBox) findViewById(R.id.cbFlagAlergia);
-		// etDescricaoAlergia = (EditText)
-		// findViewById(R.id.etDescricaoAlergia);
-		// cbFlagMedicacao = (CheckBox) findViewById(R.id.cbFlagMedicacao);
-		// etDescricaoMedicacao = (EditText)
-		// findViewById(R.id.etDescricaoMedicacao);
-		// cbFlagDiabete = (CheckBox) findViewById(R.id.cbFlagDiabete);
-		// rgPressao = (RadioGroup) findViewById(R.id.rgPressao);
-		// etDescricaoUsuario = (EditText)
-		// findViewById(R.id.etDescricaoUsuario);
 
 		btSalvar = (Button) findViewById(R.id.btSalvar);
 		btSalvar.setOnClickListener(new ClickerCadastrar());
@@ -75,8 +60,16 @@ public class CadastroUsuarioActivity extends Activity {
 		// Implementar Intente de ida e volta
 		Bundle bundle = intentLoginToNovoUsuario.getExtras();
 
-		usuario = (Usuario) bundle.getSerializable("novoUsuario");
-		fillForm();
+		origem = (String) bundle.getSerializable("origem");
+		usuario = (Usuario) bundle.getSerializable("usuario");
+		
+		if("Login".equalsIgnoreCase(origem)){
+			tvLogin.setText(R.string.usuario);
+			etUsuario.setText(usuario.getUsuario());
+		}else if("Menu".equalsIgnoreCase(origem)){
+			tvLogin.setText(R.string.cadastro_usuario);
+			fillForm();
+		}
 	}
 
 	private class ClickerCadastrar implements OnClickListener {
@@ -97,22 +90,29 @@ public class CadastroUsuarioActivity extends Activity {
 					trace(mensagens.toString());
 					break;
 				}
-
-				if (dao.insert(usuario) == -1) {
-					trace("Não foi possível cadatrar o Usuário.");
-				} else {
-					trace("Usuário cadastrado com sucesso!");
+				if("Login".equalsIgnoreCase(origem)){
+					if (dao.insert(usuario) == -1) {
+						trace("Não foi possível cadatrar o Usuário.");
+					} else {
+						trace("Usuário cadastrado com sucesso!");
+					}
+				} else if("Menu".equalsIgnoreCase(origem)){
+					if (dao.updateUsuario(usuario) == -1) {
+						trace("Não foi possível salvar o Usuário.");
+					} else {
+						trace("Usuário salvo com sucesso!");
+					}
 				}
 
-				Intent intentLoginToMenu = new Intent(
-						CadastroUsuarioActivity.this, MenuActivity.class);
+				Intent intentCadatroUsuarioToMenu = new Intent(
+						getBaseContext(), MenuActivity.class);
 
 				Bundle myData = new Bundle();
 
 				myData.putSerializable("usuario", usuario);
-				intentLoginToMenu.putExtras(myData);
+				intentCadatroUsuarioToMenu.putExtras(myData);
 
-				startActivity(intentLoginToMenu);
+				startActivity(intentCadatroUsuarioToMenu);
 
 				break;
 			}
@@ -120,7 +120,7 @@ public class CadastroUsuarioActivity extends Activity {
 	}
 
 	private void fillEntity() throws ParseException {
-		usuario = new Usuario();
+		//usuario = new Usuario();
 		usuario.setNome(etNome.getText().toString());
 		usuario.setUsuario(etUsuario.getText().toString());
 		usuario.setSenha(etSenha.getText().toString());
@@ -131,14 +131,6 @@ public class CadastroUsuarioActivity extends Activity {
 		usuario.setDataNascimento(Utils.stringToDate(etDataNascimento.getText()
 				.toString()));
 
-		// usuario.setFlagAlergia(cbFlagAlergia.isChecked());
-		// usuario.setDescricaoAlergia(etDescricaoAlergia.getText().toString());
-		// usuario.setFlagMedicacao(cbFlagMedicacao.isChecked());
-		// usuario.setDescricaoMedicacao(etDescricaoMedicacao.getText().toString());
-		// usuario.setFlagDiabetes(cbFlagDiabete.isChecked());
-		// usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ?
-		// null : rgPressao.getCheckedRadioButtonId());
-		// usuario.setDescricaoUsuario(etDescricaoUsuario.getText().toString());
 		usuario.setFlagAtivo(true);
 	}
 
@@ -153,16 +145,6 @@ public class CadastroUsuarioActivity extends Activity {
 													// usuario.getTelefone().toString());
 		etDataNascimento.setText(Utils.dateToString(
 				usuario.getDataNascimento(), Utils.DD_MM_YYYY));
-		// cbFlagAlergia.setChecked(usuario.isFlagAlergia());
-		// etDescricaoAlergia.setText(usuario.getDescricaoAlergia());
-		// cbFlagMedicacao.setChecked(usuario.isFlagMedicacao());
-		// etDescricaoMedicacao.setText(usuario.getDescricaoMedicacao());
-		// cbFlagDiabete.setChecked(usuario.isFlagDiabetes());
-		// //rgPressao.get
-		// usuario.setBitPressao(rgPressao.getCheckedRadioButtonId() == -1 ?
-		// null : rgPressao.getCheckedRadioButtonId()); TODO Implementar
-		// preencimento dos valores dos Radios
-		// etDescricaoUsuario.setText(usuario.getDescricaoUsuario());
 
 	}
 

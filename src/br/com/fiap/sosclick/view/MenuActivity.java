@@ -13,6 +13,7 @@ import br.com.fiap.sosclick.R;
 import br.com.fiap.sosclick.util.LogStmt;
 import br.com.fiap.sosclick.util.MailBodySender;
 import br.com.fiap.sosclick.util.SmsAsync;
+import br.com.fiap.sosclick.vo.Usuario;
 
 public class MenuActivity extends Activity {
 
@@ -21,6 +22,9 @@ public class MenuActivity extends Activity {
 	ImageView ivSaude;
 	ImageView ivSocorristas;
 	ImageView ivInformacoes;
+	
+	String origem;
+	Usuario usuario;
 	
 	SmsAsync senderSms; // TESTS
 	MailBodySender senderMail; // TESTS
@@ -47,9 +51,16 @@ public class MenuActivity extends Activity {
 		ivInformacoes = (ImageView) findViewById(R.id.ivInfo);
 		ivInformacoes.setOnClickListener(new ClickerInformacoes());
 		
+		Intent intentLoginToMenu = getIntent();
+
+		Bundle bundle = intentLoginToMenu.getExtras();
+		
+		origem = (String) bundle.getSerializable("origem");
+		usuario = (Usuario) bundle.getSerializable("usuario");
+
 		// TESTS
 		// senderSms = new SmsAsync( MenuActivity.this ); --> THIS WORKS!!!
-		senderMail = new MailBodySender( MenuActivity.this );
+		//senderMail = new MailBodySender( MenuActivity.this );
 		
 	}
 
@@ -57,11 +68,18 @@ public class MenuActivity extends Activity {
 
 		@Override
 		public void onClick(View view) {
-			// Tela UsuarioActivity
-			Intent intent = new Intent(getBaseContext(),
-					UsuarioActivity.class);
+			// Tela CadastroUsuarioActivity
+			Intent intentMenuToCadastroUsuario = new Intent(getBaseContext(),
+					CadastroUsuarioActivity.class);
+
+			Bundle myData = new Bundle();
+			
+			myData.putSerializable("origem", "Menu");
+			myData.putSerializable("usuario", usuario);
+			intentMenuToCadastroUsuario.putExtras(myData);
+
 			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Usuário" );
-			startActivity(intent);
+			startActivity(intentMenuToCadastroUsuario);
 		}
 	}
 	
@@ -82,10 +100,16 @@ public class MenuActivity extends Activity {
 		@Override
 		public void onClick(View view) {
 			// Tela SaudeActivity
-			Intent intent = new Intent(getBaseContext(),
-					SaudeActivity.class);
+			Intent intentMenuToCadastroSaudeUsuario = new Intent(getBaseContext(), CadastroSaudeUsuarioActivity.class);
+
+			Bundle myData = new Bundle();
+			
+			myData.putSerializable("origem", "Menu");
+			myData.putSerializable("usuario", usuario);
+			intentMenuToCadastroSaudeUsuario.putExtras(myData);
+
 			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Saúde" );
-			startActivity(intent);
+			startActivity(intentMenuToCadastroSaudeUsuario);
 		}
 	}
 	

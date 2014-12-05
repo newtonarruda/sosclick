@@ -125,7 +125,8 @@ public class LoginActivity extends Activity {
 								LoginActivity.this, MenuActivity.class);
 
 						Bundle myData = new Bundle();
-
+						
+						myData.putSerializable("origem", "Login");
 						myData.putSerializable("usuario", usuario);
 						intentLoginToMenu.putExtras(myData);
 
@@ -156,7 +157,8 @@ public class LoginActivity extends Activity {
 
 				Bundle myData = new Bundle();
 
-				myData.putSerializable("novoUsuario", novoUsuario);
+				myData.putSerializable("origem", "Login");
+				myData.putSerializable("usuario", novoUsuario);
 				intentLoginToNovoUsuario.putExtras(myData);
 
 				startActivity(intentLoginToNovoUsuario);

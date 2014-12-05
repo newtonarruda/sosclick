@@ -21,7 +21,7 @@
     
 	<string name="cadastro_usuario">Cadastro de Usuário</string>
 	<string name="cadastro_saude_usuario">Cadastro da Saúde do Usuário</string>
-		<string name="txtEmptyNome">Nome</string>
+	<string name="txtEmptyNome">Nome</string>
 	<string name="txtEmptyEmail">E-mail</string>
 	<string name="txtEmptyTelefone">Telefone</string>
     <string name="bitPadrao">Padrão</string>
