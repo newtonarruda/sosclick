@@ -40,7 +40,7 @@ public class MenuActivity extends Activity {
 		ivUser.setOnClickListener(new ClickerUsuario());
 		
 		ivPlanodesaude = (ImageView) findViewById(R.id.ivPlanodesaude);
-		ivPlanodesaude.setOnClickListener(new ClickerPlanodesaude());
+		ivPlanodesaude.setOnClickListener(new ClickerPlanodeSaude());
 		
 		ivSaude = (ImageView) findViewById(R.id.ivSaude);
 		ivSaude.setOnClickListener(new ClickerSaude());
@@ -83,15 +83,21 @@ public class MenuActivity extends Activity {
 		}
 	}
 	
-	private class ClickerPlanodesaude implements OnClickListener {
+	private class ClickerPlanodeSaude implements OnClickListener {
 
 		@Override
 		public void onClick(View view) {
-			// Tela PlanodesaudeActivity
-			Intent intent = new Intent(getBaseContext(),
-					PlanodesaudeActivity.class);
+			// Tela PlanodeSaudeActivity
+			Intent intentMenuToCadastroPlanoSaude = new Intent(getBaseContext(),
+					CadastroPlanoSaudeActivity.class);
+			Bundle myData = new Bundle();
+			
+			myData.putSerializable("origem", "Menu");
+			myData.putSerializable("usuario", usuario);
+			intentMenuToCadastroPlanoSaude.putExtras(myData);
+
 			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Plano de Saúde" );
-			startActivity(intent);
+			startActivity(intentMenuToCadastroPlanoSaude);
 		}
 	}
 	

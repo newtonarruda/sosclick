@@ -9,6 +9,8 @@ public class DataSource extends SQLiteOpenHelper {
 
 	protected static final String DATABASE_SOS = "sosclick.db";
 	protected static final String TABLE_USUARIO = "tb_usuario";
+	protected static final String TABLE_PLANO_SAUDE = "tb_plano_saude";
+	protected static final String TABLE_SOCORRISTA = "tb_socorrista";
 	private static final int DATABASE_VERSION = 2;
 
 	Context context;
@@ -38,6 +40,18 @@ public class DataSource extends SQLiteOpenHelper {
 				+ "flag_diabetes VARCHAR, " + "bit_pressao INTEGER, "
 				+ "descricao_usuario TEXT, " + "flag_ativo VARCHAR)");
 
+		db.execSQL("CREATE TABLE " + TABLE_PLANO_SAUDE
+				+ " (id_plano_saude INTEGER PRIMARY KEY AUTOINCREMENT, "
+				+ "id_usuario INTEGER, "
+				+ "convenio TEXT, " + "plano TEXT, " + "telefone_convenio TEXT, "
+				+ "descricao TEXT, " + "flag_ativo VARCHAR)");
+		
+		db.execSQL("CREATE TABLE " + TABLE_SOCORRISTA
+				+ " (id_socorrista INTEGER PRIMARY KEY AUTOINCREMENT, "
+				+ "id_usuario INTEGER, "
+				+ "nome TEXT, " + "email TEXT, " + "telefone TEXT, " 
+				+ "flag_ativo VARCHAR)");
+		
 	}
 
 	@Override
@@ -45,6 +59,8 @@ public class DataSource extends SQLiteOpenHelper {
 		Log.w("SOSClick",
 				"Upgrading database, this will drop tables and recreate.");
 		if (newVersion > oldVersion) {
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLANO_SAUDE);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOCORRISTA);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_USUARIO);
 			onCreate(db);
 		}

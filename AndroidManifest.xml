@@ -49,6 +49,10 @@
             android:label="@string/cadastro_usuario" >
         </activity>
         <activity
+            android:name=".view.CadastroPlanoSaudeActivity"
+            android:label="@string/cadastro_plano_saude" >
+        </activity>
+        <activity
             android:name=".view.PlanodesaudeActivity"
             android:label="@string/planodesaude" >
         </activity>

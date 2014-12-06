@@ -21,9 +21,9 @@
     
 	<string name="cadastro_usuario">Cadastro de Usuário</string>
 	<string name="cadastro_saude_usuario">Cadastro da Saúde do Usuário</string>
-	<string name="txtEmptyNome">Nome</string>
-	<string name="txtEmptyEmail">E-mail</string>
-	<string name="txtEmptyTelefone">Telefone</string>
+	<string name="txtEmptyNome">Nome………</string>
+	<string name="txtEmptyEmail">E-mail………</string>
+	<string name="txtEmptyTelefone">Telefone………</string>
     <string name="bitPadrao">Padrão</string>
 	<string name="bitHipertenso">Hipertenso</string>
 	<string name="bitHipotenso">Hipotenso</string>
@@ -35,4 +35,8 @@
 	<string name="txtEmptyDescricaoUsuario">Descrições………</string>
 	<string name="btSalvar">Salvar</string>
 	<string name="alert">Alert</string>
+	<string name="cadastro_plano_saude">Cadastro do Plano de Saúde</string>
+	<string name="txtEmptyConvenio">Convenio………</string>
+	<string name="txtEmptyPlano">Plano………</string>
+	<string name="txtEmptyDescricao">Descrição do Plano de Saude………</string>
 </resources>
