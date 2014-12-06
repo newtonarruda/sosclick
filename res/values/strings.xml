@@ -39,4 +39,5 @@
 	<string name="txtEmptyConvenio">Convenio………</string>
 	<string name="txtEmptyPlano">Plano………</string>
 	<string name="txtEmptyDescricao">Descrição do Plano de Saude………</string>
+	<string name="cadastro_socorrista">Cadastro do Socorrista</string>
 </resources>
