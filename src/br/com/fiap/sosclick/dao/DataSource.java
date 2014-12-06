@@ -58,7 +58,7 @@ public class DataSource extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.w("SOSClick",
 				"Upgrading database, this will drop tables and recreate.");
-		if (3 > oldVersion) {
+		if (newVersion > oldVersion) {
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLANO_SAUDE);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOCORRISTA);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_USUARIO);

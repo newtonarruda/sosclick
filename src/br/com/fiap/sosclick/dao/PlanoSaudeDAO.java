@@ -30,7 +30,7 @@ public class PlanoSaudeDAO extends DataSource {
 
 	private static final String SELECT_ATIVO = "select id_plano_saude, id_usuario, " +
 			"convenio, plano, telefone_convenio, descricao, flag_ativo" +
-			" from " + TABLE_PLANO_SAUDE + " where flag_ativo = 'S'";
+			" from " + TABLE_PLANO_SAUDE + " where flag_ativo = ?";
 
 	public PlanoSaudeDAO(Context context) {
 		super(context);
@@ -56,9 +56,8 @@ public class PlanoSaudeDAO extends DataSource {
 		this.updateStmt.bindString(2, planoSaude.getPlano());
 		this.updateStmt.bindString(3, planoSaude.getTelefone());
 		this.updateStmt.bindString(4, planoSaude.getDescricao());
-		this.updateStmt.bindString(5, planoSaude.isFlagAtivo() ? "S" : "N");
-		this.updateStmt.bindLong(6, planoSaude.getIdPlanoSaude());
-		this.updateStmt.bindLong(7, planoSaude.getIdUsuario());
+		this.updateStmt.bindLong(5, planoSaude.getIdPlanoSaude());
+		this.updateStmt.bindLong(6, planoSaude.getIdUsuario());
 		
 		return this.updateStmt.executeUpdateDelete();
 	}
@@ -89,7 +88,7 @@ public class PlanoSaudeDAO extends DataSource {
 		PlanoSaude resultado = null;
 
 		Cursor c = db.rawQuery(SELECT_ATIVO,
-				new String[] { });
+				new String[] { "S" });
 
 		if (c.moveToFirst()) {
 			resultado = new PlanoSaude(
