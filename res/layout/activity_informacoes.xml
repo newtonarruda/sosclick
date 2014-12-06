@@ -2,25 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/background_app" >
+    android:background="@drawable/background_app"
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:orientation="horizontal" >
-        
-    <ImageView
+
+        <ImageView
             android:id="@+id/ivUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@null"
             android:src="@drawable/integrantes" >
-            </ImageView>    
-        
+        </ImageView>
     </LinearLayout>
 
 </LinearLayout>
