@@ -69,6 +69,10 @@
             android:label="@string/socorristas" >
         </activity>
         <activity
+            android:name=".view.CadastroSocorristaActivity"
+            android:label="@string/cadastro_socorrista" >
+        </activity>
+        <activity
             android:name=".view.InformacoesActivity"
             android:label="@string/informacoes" >
         </activity>

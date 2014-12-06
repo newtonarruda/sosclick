@@ -84,7 +84,7 @@ public class PlanoSaudeDAO extends DataSource {
 		return resultado;
 	}
 
-	public PlanoSaude selectAtivo(PlanoSaude planoSaude) {
+	public PlanoSaude selectAtivo() {
 		PlanoSaude resultado = null;
 
 		Cursor c = db.rawQuery(SELECT_ATIVO,

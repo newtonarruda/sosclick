@@ -13,58 +13,58 @@ import android.widget.TextView;
 import android.widget.Toast;
 import br.com.fiap.sosclick.R;
 import br.com.fiap.sosclick.dao.PlanoSaudeDAO;
+import br.com.fiap.sosclick.dao.SocorristaDAO;
 import br.com.fiap.sosclick.vo.PlanoSaude;
+import br.com.fiap.sosclick.vo.Socorrista;
 import br.com.fiap.sosclick.vo.Usuario;
 
-public class CadastroPlanoSaudeActivity extends Activity {
+public class CadastroSocorristaActivity extends Activity {
 
 	String origem;
 	Usuario usuario;
-	PlanoSaude planoSaude;
+	Socorrista socorrista;
 
 	Button btSalvar;
 
-	TextView tvPlanoSaude;
-	EditText etConvenio;
-	EditText etPlano;
+	TextView tvSocorrista;
+	EditText etNome;
+	EditText etEmail;
 	EditText etTelefone;
-	EditText etDescricao;
 
-	PlanoSaudeDAO dao;
+	SocorristaDAO dao;
 
 	private StringBuffer mensagens = new StringBuffer();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cadastro_plano_saude);
+		setContentView(R.layout.activity_cadastro_socorrista);
 
-		tvPlanoSaude = (TextView) findViewById(R.id.tvPlanoSaude);
-		etConvenio = (EditText) findViewById(R.id.etConvenio);
-		etPlano = (EditText) findViewById(R.id.etPlano);
+		tvSocorrista = (TextView) findViewById(R.id.tvSocorrista);
+		etNome = (EditText) findViewById(R.id.etNome);
+		etEmail = (EditText) findViewById(R.id.etEmail);
 		etTelefone = (EditText) findViewById(R.id.etTelefone);
-		etDescricao = (EditText) findViewById(R.id.etDescricao);
 
 		btSalvar = (Button) findViewById(R.id.btSalvar);
 		btSalvar.setOnClickListener(new ClickerCadastrar());
 
 		if (dao == null) {
-			dao = new PlanoSaudeDAO(this);
+			dao = new SocorristaDAO(this);
 		}
 
-		Intent intentMenuToPlanoSaude = getIntent();
+		Intent intentMenuToSocorrista = getIntent();
 
 		// Implementar Intente de ida e volta
-		Bundle bundle = intentMenuToPlanoSaude.getExtras();
+		Bundle bundle = intentMenuToSocorrista.getExtras();
 
 		origem = (String) bundle.getSerializable("origem");
 		usuario = (Usuario) bundle.getSerializable("usuario");
 
 		if ("Menu".equalsIgnoreCase(origem)) {
-			planoSaude = dao.selectAtivo();
-			if(planoSaude == null){
-				planoSaude = new PlanoSaude();
-				planoSaude.setIdUsuario(usuario.getIdUsuario());
+			socorrista = dao.selectAtivo();
+			if(socorrista == null){
+				socorrista = new Socorrista();
+				socorrista.setIdUsuario(usuario.getIdUsuario());
 			}else{
 				fillForm();
 			}
@@ -91,13 +91,13 @@ public class CadastroPlanoSaudeActivity extends Activity {
 				}
 				
 				if (dao.selectAtivo() == null) {
-					if (dao.insert(planoSaude) == -1) {
+					if (dao.insert(socorrista) == -1) {
 						trace("Não foi possível salvar o Plano de Saúde.");
 					} else {
 						trace("Plano de Saúde salvo com sucesso!");
 					}
 				}else{
-					if (dao.update(planoSaude) == -1) {
+					if (dao.update(socorrista) == -1) {
 						trace("Não foi possível salvar o Plano de Saúde.");
 					} else {
 						trace("Plano de Saúde salvo com sucesso!");
@@ -117,19 +117,17 @@ public class CadastroPlanoSaudeActivity extends Activity {
 	}
 
 	private void fillEntity() throws ParseException {
-		planoSaude.setConvenio(etConvenio.getText().toString());
-		planoSaude.setPlano(etPlano.getText().toString());
-		planoSaude.setTelefone(etTelefone.getText().toString());
-		planoSaude.setDescricao(etDescricao.getText().toString());
-		planoSaude.setFlagAtivo(true);
+		socorrista.setNome(etNome.getText().toString());
+		socorrista.setEmail(etEmail.getText().toString());
+		socorrista.setTelefone(etTelefone.getText().toString());
+		socorrista.setFlagAtivo(true);
 	}
 
 	private void fillForm() {
 
-		etConvenio.setText(planoSaude.getConvenio());
-		etPlano.setText(planoSaude.getPlano());
-		etTelefone.setText(planoSaude.getTelefone());
-		etDescricao.setText(planoSaude.getDescricao());
+		etNome.setText(socorrista.getNome());
+		etEmail.setText(socorrista.getEmail());
+		etTelefone.setText(socorrista.getTelefone());
 
 	}
 

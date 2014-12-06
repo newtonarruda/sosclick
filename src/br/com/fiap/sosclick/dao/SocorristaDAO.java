@@ -28,6 +28,10 @@ public class SocorristaDAO extends DataSource {
 			"nome, email, telefone, flag_ativo" +
 			" from " + TABLE_SOCORRISTA + " where cast(id_socorrista as text) = ? and cast(id_usuario as text) = ?";
 
+	private static final String SELECT_ATIVO = "select id_socorrista, id_usuario, " +
+			"nome, email, telefone, flag_ativo" +
+			" from " + TABLE_SOCORRISTA + " where flag_ativo = ?";
+
 	public SocorristaDAO(Context context) {
 		super(context);
 		this.insertStmt = this.db.compileStatement(INSERT);
@@ -77,6 +81,26 @@ public class SocorristaDAO extends DataSource {
 		return resultado;
 	}
 
+	public Socorrista selectAtivo() {
+		Socorrista resultado = null;
+
+		Cursor c = db.rawQuery(SELECT_ATIVO,
+				new String[] { "S" });
+
+		if (c.moveToFirst()) {
+			resultado = new Socorrista(
+					c.getInt(c.getColumnIndex("id_socorrista")), 
+					c.getInt(c.getColumnIndex("id_usuario")), 
+					c.getString(c.getColumnIndex("nome")), 
+					c.getString(c.getColumnIndex("email")), 
+					c.getString(c.getColumnIndex("telefone")), 
+					c.getString(c.getColumnIndex("flag_ativo")).equalsIgnoreCase("S") ? true : false);
+		}
+
+		c.close();
+
+		return resultado;
+	}
 
 	public boolean isOpenDb() {
 		return db.isOpen();

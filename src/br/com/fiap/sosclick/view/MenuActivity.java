@@ -124,10 +124,15 @@ public class MenuActivity extends Activity {
 		@Override
 		public void onClick(View view) {
 			// Tela SocorristasActivity
-			Intent intent = new Intent(getBaseContext(),
-					SocorristasActivity.class);
+			Intent intentMenuToCadastroSocorrista = new Intent(getBaseContext(),
+					CadastroSocorristaActivity.class);
+			Bundle myData = new Bundle();
+			
+			myData.putSerializable("origem", "Menu");
+			myData.putSerializable("usuario", usuario);
+			intentMenuToCadastroSocorrista.putExtras(myData);
 			Log.d( LogStmt.CATEGORIA_MENU_ACTIVITY, "MenuActivity.onClick: Opção do menu: Socorrista" );
-			startActivity(intent);
+			startActivity(intentMenuToCadastroSocorrista);
 		}
 	}
 	
